@@ -150,7 +150,7 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
 function decrease(id, quantity) {
-  console.log('dsbbfdbfdbnfdgbnfgfgfgfgfgfgfgfgfgfgfgfgn')
+ 
 const check = document.getElementById(`${id}_data-value`).value
 
 
@@ -183,7 +183,22 @@ console.log(check)
 
      }
 
-     else{            
+     else if(check<=1){            
+   
+Swal.fire({
+  icon: 'error',
+  title: 'Oops...',
+  text: 'the stoke limit reach!',
+
+
+  
+})
+if(check<=0){
+
+location.reload()
+}
+     }
+     else {            
    
 Swal.fire({
   icon: 'error',
@@ -212,12 +227,20 @@ function increase(id, quantity) {
     success: (response) => {
     
       if(response.success==false){
+          
+ $(`#${id}_data-value`).val(response.value1.quantity)
+ $('#price-total').html('<i class="fa fa-indian-rupee-sign fa-xl" style="color: #000000;"></i>'+response.totalAmount)
+ $(`#${id}_price_sub`).html('<i class="fa fa-indian-rupee-sign fa" style="color: #000000;"></i>'+response.price)
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
             text: 'the stoke limit reach!',
   
        })
+      
+
+location.reload()
+
       }else{
       $('#stoke').val(response.stock)
    
