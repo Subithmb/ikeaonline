@@ -61,6 +61,33 @@ const loadHome =async(req,res)=>{
         console.log(error.message);
         res.render('error500')
         }}
+    // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< user homepageloading >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+const loadHomeGuest =async(req,res)=>{
+    try {
+
+            const bannerData=await banner.find().limit(4).lean()
+            const bannerData1=await banner.find().skip(4).limit(4).lean()
+          
+      
+      
+        username=null
+      
+
+        const categoryData=await category.find({is_status:false}).lean()
+
+        const filterProducts=await product.find({status:false}).populate({
+            path:'category',
+            match:{is_status:false}
+        }).lean().limit(12)
+
+        const productData=filterProducts.filter(product=>product.category !== null)
+
+        res.render('userhome',{user1:true,user:true,productData,categoryData,bannerData,bannerData1})
+    } catch (error) {
+        console.log(error.message);
+        res.render('error500')
+        }}
 
         
 
@@ -356,7 +383,8 @@ module.exports={
     userProfile,
     otpSubmit,
     otpPage,
-    resendOtp
+    resendOtp,
+    loadHomeGuest
    
    
     // wishList
