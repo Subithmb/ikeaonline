@@ -1,0 +1,427 @@
+
+{{!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script> --}}
+{{!-- <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script> --}}
+
+ <!--================Home Banner Area =================-->
+  {{!-- <!-- breadcrumb start-->
+  <section class="breadcrumb breadcrumb_bg">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="breadcrumb_iner">
+            <div class="breadcrumb_iner_item">
+              <h2>Product Checkout</h2>
+              <p>Home <span>-</span>Checkout</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- breadcrumb start--> --}}
+
+  <!--================Checkout Area =================-->
+  <section class="checkout_area padding_top d-flex">
+    <div class="container">
+      <div class="returning_customer">
+        <div class="check_title">
+        
+        </div>
+        
+      </div>
+      <div class="cupon_area">
+        <div class="check_title">
+          
+        </div>
+        <input type="text" placeholder="Enter coupon code" />
+        <a class="btn_3" href="#">Apply Coupon</a>
+      </div>
+      <div class="billing_details">
+        <div class="row">
+          <div class="col-lg-8">
+            <h3>Billing Address</h3>
+
+
+
+			
+              <div class="col-md-12 form-group">
+                <div class="creat_account">
+				
+                </div>
+                   <a style="margin-top: 10vh;"  class="btn_3" href="/selectaddress">SELECT ADDRESS</a>
+              </div>
+              <div class="col-md-12 form-group">
+                {{!-- <div class="creat_account">
+                  <h3>Shipping Details</h3>
+                  <input type="checkbox" id="f-option3" name="selector" />
+                  <label for="f-option3">Ship to a different address?</label>
+                </div> --}}
+                {{!-- <textarea class="form-control" name="message" id="message" rows="1"
+                  placeholder="Order Notes"></textarea> --}}
+              </div>
+            
+           
+
+
+
+          </div>
+          <div class="col-lg-4">
+            <div class="order_box">
+              <h2>Your Order</h2>
+              <ul class="list">
+                <li>
+                  <a href="#">Product
+                    <span>price</span>
+                    <span>Total</span>
+                  </a>
+                </li>
+                {{#each cartList}}
+                <li>
+                  <a href="#">{{productName}}<span class="middle">x{{quantity}} </span>
+                   <span class="last">{{Tprice}}</span>
+                  </a>
+                </li>
+                {{/each}}
+              
+               
+              </ul>
+              <ul class="list list_2">
+               
+                <li>
+                  <a href="#">Shipping
+                    <span>free delivery</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">Total
+                    <span>{{totalAmount}}</span>
+                  </a>
+                </li>
+              </ul>
+              <div class="payment_item">
+                <div class="radion_btn">
+                  <input type="radio" id="f-option5" name="paymentMethod" value="cod" />
+                  <label for="f-option5">COD</label>
+                  <div class="check"></div>
+                </div>
+
+                 <div class="radion_btn">
+                  <input type="radio" id="f-option6" name="paymentMethod" value="online" />
+                  <label for="f-option6">Paypal </label>
+                  <img src="img/product/single-product/card.jpg" alt="" />
+                  <div class="check"></div>
+                </div>
+              
+              </div>
+              {{!-- <div class="payment_item active">
+               
+               
+              </div> --}}
+              {{!-- <div class="creat_account">
+                <input type="checkbox" id="f-option4" name="selector" />
+                <label for="f-option4">I’ve read and accept the </label>
+                <a href="#">terms & conditions*</a>
+              </div> --}}
+              <a class="btn_3" href="#">Proceed</a>
+            </div>
+          </div>
+
+           </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--================End Checkout Area =================-->
+
+
+
+
+
+
+
+
+
+
+
+
+            <form id="checkoutForm" class="row contact_form"  method="post">
+               
+			  {{#with selectedAddress}}
+       
+              {{!-- <div class="col-md-6 form-group p_star  "style="height:30vh;">
+				<div style="display:inline-flexbox;"> --}}
+
+				{{!-- <div class="form-check"> --}}
+			<input class="form-check-input" type="checkbox" value="{{_id}}" id="flexCheckChecked" checked>
+			<label class="form-check-label" for="flexCheckChecked">
+			Address</label>
+			</div>
+				<textarea style="height:30vh; margin-bottom: 10vh;" rows="20" cols="60" name="comment" form="usrform">
+			NAME        : {{name}}
+			LAST NAME   : {{lastname}}
+			EMAIL       : {{email}}
+			CITY        : {{city}}
+			STATE       : {{state}}
+			LANDMARK    : {{landmark}}
+			PIN CODE    : {{pincode}}
+			MOBILE      : {{Mobile}}
+			SECONDRY NO : {{AlternateMobile}}
+				</textarea>
+               
+				</div>
+              </div>
+           
+            {{/with}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container"></div>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"> </script>
+
+<section style="margin-top: 10vh;" class="container">
+  <form action="" id="checkoutForm">
+                    <div class="row">
+ <a href="/addnewaddress">Add New Address</a>
+  <a class="btn-3 " href="/selectaddress">Select Address</a>
+
+                        
+     <div class="col-lg-8 col-md-6">
+                                {{#with selectedAddress}}
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p> Name<span>*</span></p>
+                                        <input type="text"name="name" value="{{name}}" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Last Name<span>*</span></p>
+                                        <input type="text"name="lastname" value="{{lastname}}" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Phone<span>*</span></p>
+                                        <input type="number"name="Mobile" value="{{Mobile}}" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Email<span>*</span></p>
+                                        <input type="text" name="email" value="{{email}}" required>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            {{!-- <div class="checkout__input">
+                                <p>House Name<span>*</span></p>
+                                <input type="text" name="house" value="{{house}}" placeholder="House Name" class="checkout_input_add" required>
+                            </div> --}}
+                            <div class="checkout__input">
+                                <p>Town/City<span>*</span></p>
+                                <input type="text" value="{{city}}" name="city" required>
+                            </div>
+                            <div class="checkout__input">
+                                <p>State<span>*</span></p>
+                                <input type="text"name="state" value="{{state}}" required>
+                            </div>
+                            <div class="checkout__input">
+                                <p>Pin code<span>*</span></p>
+                                <input type="number"name="pincode" value="{{pincode}}" required>
+                            </div>
+                            <div class="checkout__input">
+                                <p>Landmark<span>*</span></p>
+                                <input type="text" name="landmark" value="{{landmark}}" required>
+                            </div>
+                            {{/with}}
+                        </div> 
+
+                          
+                        <div class="col-lg-4 col-md-6">
+                           
+                            <div class="checkout__order">
+                                
+                                   
+                                <h4 class="order__title">Your order</h4>
+                                <div class="checkout_order_products">Product <span>Total</span></div>
+                               {{#each  cartList}}
+                                <ul class="checkout_total_products">
+                                    <li>{{productName}} x{{quantity}} <span>Rs {{Tprice}}</span></li>
+                                </ul>
+                                {{/each}} 
+                                <ul class="checkout_total_all">
+                                    <li>Subtotal <span>{{totalAmount}}</span></li>
+                                    <li>Total <span>{{totalAmount}}</span></li>
+                                    
+                                </ul>
+                                {{!-- <div class="checkout_input_checkbox">
+                                    <label for="acc-or">
+                                        Create an account?
+                                        <input type="checkbox" id="acc-or">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div> --}}
+                                {{!-- <p>Lorem ipsum dolor sit amet, consectetur adip elit, sed do eiusmod tempor incididunt
+                                ut labore et dolore magna aliqua.</p> --}}
+                                <div class="form-check">
+                                              <input class="form-check-input" type="radio" value="COD" name="paymentmethod" id="paymentmethod1">
+                                    <label class="form-check-label" for="paymentmethod1">
+                                        COD
+                                          </label>
+                                </div>
+                                     <div class="form-check mt-2 mb-2">
+                                         <input class="form-check-input" type="radio" value="online" name="paymentmethod" id="paymentmethod2" checked>
+                                         <label class="form-check-label" for="paymentmethod2">
+                                             Payment  </label>
+                                    </div>
+                                <button type="submit" class="site-btn">PLACE ORDER</button>
+                          
+                            </div>
+                           
+                        </div>
+                         
+                         
+                    </div>
+            </form>
+            </div>
+</section>
+
+
+  <script>
+$("#checkoutForm").submit((e)=>{
+  e.preventDefault();
+  $.ajax({
+    url:"/placeOrder",
+    method:"post",
+    data:$("#checkoutForm").serialize(),
+    success:(response)=>{
+     
+      alert(response)
+    }
+  })
+})
+    </script>
+
+    
+
+    <section class="container checkout_area pt-5 d-flex">
+    <div class="justify-content-center align-items-center billing_details">
+
+  
+{{!-- <section style="margin-top: 10vh;" class="container"> --}}
+  <form action="" id="checkoutForm">
+                    <div class="row">
+ <a href="/addnewaddress">Add New Address</a>
+  <a class="btn-3 " href="/selectaddress">Select Address</a>
+
+                        
+    <div class="col-10 col-md-5  justfiy-content-center align-item-center">
+                                {{#with selectedAddress}}
+                         
+                                
+                                    <div class="checkout__input">
+                                        <p> Name<span>*</span></p>
+                                        <input type="text"name="name" value="{{name}}" required>
+                                    </div>
+                                
+                             
+                              
+
+                            
+       <div class="checkout__input">
+                     <p>Last Name<span>*</span></p>
+                 <input type="text" name="lastname" value="{{lastname}}" required>
+               </div>
+         <div class="checkout__input">
+         <p>Phone<span>*</span></p>
+             <input type="number"name="Mobile" value="{{Mobile}}" required>
+     </div>
+       <div class="checkout__input">
+     <p>Email<span>*</span></p>
+       <input type="text" name="email" value="{{email}}" required>
+   </div>
+                                
+                         
+                            
+                            {{!-- <div class="checkout__input">
+                                <p>House Name<span>*</span></p>
+                                <input type="text" name="house" value="{{house}}" placeholder="House Name" class="checkout_input_add" required>
+                            </div> --}}
+                            <div class="checkout__input">
+                                <p>Town/City<span>*</span></p>
+                                <input type="text" value="{{city}}" name="city" required>
+                            </div>
+                            <div class="checkout__input">
+                                <p>State<span>*</span></p>
+                                <input type="text"name="state" value="{{state}}" required>
+                            </div>
+                            <div class="checkout__input">
+                                <p>Pin code<span>*</span></p>
+                                <input type="number"name="pincode" value="{{pincode}}" required>
+                            </div>
+                            <div class="checkout__input">
+                                <p>Landmark<span>*</span></p>
+                                <input type="text" name="landmark" value="{{landmark}}" required>
+                            </div>
+                            {{/with}}
+  </div> 
+
+  <div class="col-12 col-md-6">
+                        {{!-- <div class="col-lg-4 col-md-6"> --}}
+                           
+                            <div style="background-color: rgb(173, 173, 183);height: 60vh;width: 40vw;;" class="checkout__order form-floating mb-3 mt-3 ">
+                                
+                                <div class="pl-5 pt-2">   
+                                <h4 class="order__title">Your order</h4>
+                                <div class="checkout_order_products">Product <span>Total</span></div>
+                               {{#each  cartList}}
+                                <ul class="checkout_total_products">
+                                    <li>{{productName}} x{{quantity}} <span>Rs {{Tprice}}</span></li>
+                                </ul>
+                                {{/each}} 
+                                <ul class="checkout_total_all">
+                                    <li>Subtotal <span>{{totalAmount}}</span></li>
+                                    <li>Total <span>{{totalAmount}}</span></li>
+                                    
+                                </ul>
+                                
+                                <div class="form-check">
+                                              <input class="form-check-input" type="radio" value="COD" name="paymentmethod" id="paymentmethod1">
+                                    <label class="form-check-label" for="paymentmethod1">
+                                        COD
+                                          </label>
+                                </div>
+                                     <div class="form-check mt-2 mb-2">
+                                         <input class="form-check-input" type="radio" value="online" name="paymentmethod" id="paymentmethod2" checked>
+                                         <label class="form-check-label" for="paymentmethod2">
+                                             Payment  </label>
+                                    </div>
+                                <button type="submit" class="site-btn">PLACE ORDER</button>
+                          
+                            </div>
+                           </div>
+                        </div>
+                         
+                         
+ </div>
+</form>     
+       
+  </div>
+</section>

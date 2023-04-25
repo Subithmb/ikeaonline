@@ -1,0 +1,82 @@
+
+ <!--================login_part Area =================-->
+ {{!-- <script src="/js/formvalidation"></script> --}}
+    <section class=" container login_part pt-5 h-100v">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-md-6">
+                    <div class="login_part_text text-center">
+                        <div class="login_part_text_iner">
+                            <h2>New to our Shop?</h2>
+                            <p>There are advances being made in science and technology
+                                everyday, and a good example of this is the</p>
+                            <a href="/register" class="btn_3">Create an Account</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="login_part_form">
+                        <div class="login_part_form_iner">
+                            <h3>Welcome Back ! <br>
+                                Please Sign in now</h3>
+                            <form name="submit"  onsubmit="return validate()"  action="/changeforgotpass?id={{id}}" method="post" >
+                               
+                                <div class="input-control col-md-12 form-group p_star">
+                                    <input type="password" class="form-control" id="password"  name="password"
+                                        placeholder="new-Password">
+                                         <div class="error"></div>
+                                </div>
+                                <div class="input-control col-md-12 form-group p_star">
+                                    <input type="password" class="form-control" id="cpassword"  name="cpassword"
+                                        placeholder="confirm-Password">
+                                         <div class="error"></div>
+                                </div>
+                                     <h6 id="error-mess" style="color: rgb(229, 14, 97);">{{error}}</h6>
+                                <div class="input-control col-md-12 form-group">
+                                   
+                                    <button onsubmit="validate()"  id="submit" type="submit"  class="btn_3">
+                                        log in
+                                    </button>
+                                    
+                                     <p  style="color: rgb(229, 14, 97);">{{message}}</p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> 
+
+
+
+
+<script>
+
+function validate(){
+  
+   
+    var password=document.submit.password.value;
+    var cpassword=document.submit.cpassword.value;
+
+  
+    var passworderror= /^(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{7,}$/
+    var error=document.getElementById("error-mess");
+
+
+
+   
+   
+    if(passworderror.test(password)==false){
+        error.innerHTML='invalid  password '
+        return false;
+    }
+    if(password!==cpassword){
+        error.innerHTML='Passwords do not match'
+    }
+    return true;
+  }
+
+</script>
+
+

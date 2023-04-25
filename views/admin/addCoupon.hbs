@@ -1,0 +1,94 @@
+
+
+    
+  <!--================login_part Area =================-->
+    <section class="login_part p-2 h-100vh">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-md-6">
+                    <div class="login_part_text text-center">
+                        <div class="login_part_text_iner">
+                            <h2>New to our Shop?</h2>
+                            <p>There are advances being made in science and technology
+                                everyday, and a good example of this is the</p>
+                            {{!-- <a href="/login" class="btn_3">Log In</a> --}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="login_part_form">
+                        <div class="login_part_form_iner">
+                            <h3>Welcome ! <br>
+                               Add New Coupon now</h3>
+                            <form class="row contact_form"  action="/createCoupon"  method="post">
+                                <div class="col-md-12 form-group p_star">
+                                    <input type="text" class="form-control" id="name" name="couponName"
+                                        placeholder="Coupon Name" required>
+                                </div>
+                                <div class="col-md-12 form-group p_star">
+                                    <input type="text" class="form-control" id="name" name="couponCode"
+                                        placeholder="Coupon Code" required>
+                                </div>
+                                <div class="col-md-12 form-group p_star">
+                                    <input type="number" class="form-control" id="name" name="discountAmount"
+                                        placeholder="Discount Amount" required>
+                                </div>
+                                <div class="col-md-12 form-group p_star">
+                                    <input type="number" class="form-control" id="name" name="minAmount"  
+                                        placeholder="Minimum Amount" required>
+                                </div>
+                                <div class="col-md-12 form-group p_star">
+                                    <input type="number" class="form-control" id="name" name="couponLimit"  
+                                        placeholder="Copon Limit" required>
+                                </div>
+                                <div class="col-md-12 form-group p_star">
+                                    <input type="date" class="form-control" id="password" name="expiryDate" 
+                                        placeholder="Coupon Expiry Date" required>
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    {{!-- <div class="creat_account d-flex align-items-center">
+                                        <input type="checkbox" id="f-option" name="selector">
+                                        <label for="f-option">Remember me</label>
+                                    </div> --}}
+                                    <button  type="submit"  class="btn_3">
+                                        Add Coupon
+                                    </button>
+                                    
+                                  
+                                     <p style="color: rgb(234, 9, 9);">{{message}}</p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================login_part end =================-->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+
+function coupon() {
+        
+        event.preventDefault()
+        $.ajax({
+            url: '/addCoupon',
+            method: 'post',
+            success: (response) => {
+                   
+        if (response) {
+
+        swal("Product added to Cart!", "Product added to cart!", "success");
+        
+        }
+        },
+            error: (error) => {
+            alert('error')
+            } },)
+}
+    
+   </script>
+
+
+
+

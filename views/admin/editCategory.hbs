@@ -1,0 +1,58 @@
+
+    <section class=" container login_part pt-5 h-100v">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-md-6">
+                    <div class="login_part_text text-center">
+                        <div class="login_part_text_iner">
+                            <h2>New to our Shop?</h2>
+                            <p>There are advances being made in science and technology
+                                everyday, and a good example of this is the</p>
+                            {{!-- <a href="/register" class="btn_3">Create a sub-category</a> --}}
+                        </div>
+                    </div>
+                </div>
+               
+                <div class="col-lg-6 col-md-6">
+                    <div class="login_part_form">
+                        <div class="login_part_form_iner">
+                            <h3>Welcome Back ! <br>
+                                Please Edit Category now</h3>
+                            <form id="form" class="row contact_form" action="/editCategory" method="post">
+                                <div class="input-control col-md-12 form-group p_star">
+                                    <input type="text" class="form-control" value="{{category}}" id="email" name="category" 
+                                        placeholder="Category Name" > <input type="hidden" name="id" value="{{id}}">
+                                        <div class="error"></div>
+                                        
+                                </div>
+                                {{!-- <div class="input-control col-md-12 form-group p_star">
+                                    <input type="hidden" name='id' value="{{id}}">
+                                </div> --}}
+                                <div class="input-control col-md-12 form-group">
+                                    {{!-- <div class="creat_account d-flex align-items-center">
+                                        <input type="checkbox" id="f-option" name="selector">
+                                        <label for="f-option">Remember me</label>
+                                    </div> --}}
+                                    <button type="submit"  class="btn_3">
+                                        Add-New
+                                    </button>
+                                    {{!-- <a class="lost_pass" href="#">forget password?</a> --}}
+                                    
+                                     <p style="color: rgb(229, 14, 97);">{{message}}</p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+

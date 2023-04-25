@@ -1,0 +1,203 @@
+
+ 
+
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/jquery.zoom/1.7.21/jquery.zoom.min.js"></script>
+
+
+
+    
+     <!--================Home Banner Area =================-->
+    <!-- breadcrumb start-->
+    <section class="breadcrumb">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="breadcrumb_iner">
+                        <div class="breadcrumb_iner_item">
+                            <h2 class="row justify-content-center">Product-view</h2>
+                            <p class="row justify-content-center">Home <span>-</span> Product-view</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- breadcrumb start-->
+    <!-- Shop Details Section Begin -->
+    <section style="margin-top: 20vh;" class="shop-details ">
+        <div class="product_details_pic">
+            <div class="container">
+                
+
+                <div class="row">           
+                    <div class="col-lg-3 col-md-3">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active"  data-toggle="tab" href="#tabs-1" role="tab">
+                                    <div  class="product_thumb_pic set-bg" style="width:14rem;height:11rem" data-setbg="/productImages/{{image.[0]}}">
+                                     <img style="width:14rem;height:11rem" src="/productImages/{{image.[0]}}" alt="">
+                                    </div>
+                                </a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">
+                                    <div class="product_thumb_pic set-bg" style="width:14rem;height:11rem"  data-setbg="/productImages/{{image.[1]}}">
+                                     <img style="width:14rem;height:11rem" src="/productImages/{{image.[1]}}" alt="">
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab">
+                                    <div class="product_thumb_pic set-bg" style="width:14rem;height:11rem"  data-setbg="/productImages/{{image.[2]}}">
+                                     <img style="width:14rem;height:11rem" src="/productImages/{{image.[2]}}" alt="">
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                     
+                    <div class="col-lg-6 col-md-9">
+                        <div class="tab-content">
+                            <div class="tab-pane active"  id="tabs-1" role="tabpanel">
+                                <div id="img-container" class="product_detailspic_item" style="width: 60vw;height: 60vh;">
+                                    <img id="imgViewer"  style="width:35rem;height:30rem" class="zoom"  src="/productImages/{{image.[0]}}" alt="">
+                                </div>
+                            </div>
+                            <div  class="tab-pane" id="tabs-2" role="tabpanel">
+                                <div id="img-containerone" class="product_detailspic_item">
+                                    <img style="width:35rem;height:30rem" src="/productImages/{{image.[1]}}" alt="">
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tabs-3" role="tabpanel">
+                                <div id="img-containertwo" class="product_detailspic_item">
+                                    <img style="width:35rem;height:30rem" src="/productImages/{{image.[2]}}" alt="">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="product_details_content">    
+            <div class="container">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-lg-8">
+                        <div style="margin-top: 4vh;" class="product_details_text">
+                            <h3>{{productName}}</h3>
+                          
+                     <h3><i class="fa fa-indian-rupee-sign  "></i> {{price}}<span>{{productprice}}</span></h3>
+                            <p>{{categoryName}}</p>
+                          
+                            <div class="product_detailscart_option">
+                                    <a href="" id="cart" onclick="addToCartlist('{{this._id}}');"><h3>add to cart</h3> </a>
+                                {{!-- <a href="/cartDataAdding" class="primary-btn">add to cart</a> --}}
+                            </div>
+                            <div class="product_detailsbtns_option">
+                                  <a href="" id="wish" onclick="addToWishlist('{{this._id}}');"><h2><i class="ti-heart"></i></h2></a>
+                                {{!-- <a href="#"><i class="fa fa-heart"></i> add to wishlist</a> --}}
+                               
+                            </div>
+                          
+                        </div>
+                    </div>
+                </div>    
+            </div>
+        </div>
+    </section>
+    <!-- Shop Details Section End -->
+
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+   
+
+     <script>
+       function addToWishlist(proId) {
+        event.preventDefault()
+        $.ajax({
+     url: '/wishlistData',
+     data: {
+     product: proId,},
+     method: 'post',
+     success: (response) => {
+     if (response) {
+
+        swal("Product added to wishlist!","Product added to wishlist!", "success");
+                } },
+     error: (error) => {
+    alert(error)
+    } },)
+}
+
+function addToCartlist(proId) {
+        
+        event.preventDefault()
+        $.ajax({
+            url: '/cartDataAdding',
+            data: {
+           product: proId,},
+           method: 'post',
+          success: (response) => {   
+         if (response) {
+
+         swal("Product added to Cart !", "Product added to Cart !", "success");}
+  },
+  error: (error) => {
+   alert(error)
+            } },)
+}
+</script>
+
+<script>
+
+
+$(document).ready(function() {
+  $('#my-image').zoom();
+});
+
+</script>
+
+
+
+
+
+
+<script src="https://unpkg.com/js-image-zoom@0.4.1/js-image-zoom.js" type="application/javascript"></script>
+
+       <script>
+            var options = {
+                width: 350,
+                zoomWidth: 400,
+                zoomHeight: 1000,
+                offset: { vertical: 0, horizontal: 50 },
+                zoomPosition: "left"
+            };
+            new ImageZoom(document.getElementById("img-container"), options);
+
+        </script>
+        <script>
+            var options = {
+                width: 350,
+                zoomWidth: 400,
+                zoomHeight: 1000,
+                offset: { vertical: 0, horizontal: 50 },
+                zoomPosition: "left"
+            };
+            new ImageZoom(document.getElementById("img-containerone"), options);
+
+        </script>
+        <script>
+            var options = {
+                width: 350,
+                zoomWidth: 400,
+                zoomHeight: 1000,
+                offset: { vertical: 0, horizontal: 50 },
+                zoomPosition: "left"
+            };
+            new ImageZoom(document.getElementById("img-containertwo"), options);
+
+        </script>

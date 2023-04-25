@@ -1,0 +1,311 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+ <!-- breadcrumb start-->
+    <section style="background-color:#efefef; height: 10vh;width: 100%;">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="breadcrumb_iner">
+                        <div class="breadcrumb_iner_item">
+                            {{!-- <h2 class="row justify-content-center"></h2> --}}
+                            {{!-- <p class="row justify-content-center">Home <span>-</span> Shop Category</p> --}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- breadcrumb start-->
+ <section class="checkout_area pt-4">
+    <div class="container-fluid">
+    
+
+      <div class="cupon_area d-flex ">
+       <div>
+
+          <h4 style="width: 35vw; center;">Have a coupon?</h2>
+          <div class="cupon_area mb-2">
+
+        {{!-- <input style="width: 30vw;" type="text" placeholder="Enter coupon code" /> --}}
+         <input style="width: 30vw; border-radius: 20px; border-color: brown;margin-left:0px;"  id="couponId" type="text" name="couponId" value="" placeholder="Enter coupon Here" required>
+        <span class="text-danger ml-5" id="couponspan"> </span>
+        <button onclick="couponValidator('{{totalAmount}}')" style="width: 15vw; height: 5vh;" class="btn_3 mt-4 ml-3" >Enter</button>
+        {{!-- <a style="width: 15vw; height: 5vh;" class="btn_3 mt-4 ml-3" href="#">Apply Coupon</a> --}}
+          </div>
+       </div>
+       
+      </div>
+
+
+      <div class="billing_details d-flex">
+        <div class="row d-flex">
+          <div style="width: 50vw;" class="col-lg-3 ml-3">
+
+            <h3>Billing Details</h3> 
+            
+
+            <form class="row contact_form"action="" id="checkoutForm">
+               {{#with selectedAddress}}
+              <div class="col-md-6 form-group p_star">
+              <p>Name<span>*</span></p>
+                 <input  class="form-control text-primary" id="company" type="text" name="name" value="{{name}}" required>
+              </div>
+              <div class="col-md-6 form-group p_star" />
+               <p>Last Name<span>*</span></p>
+                 <input  class="form-control text-primary" id="company" type="text" name="lastname" value="{{lastname}}" required>
+              </div>
+              <div class="col-md-12 form-group">
+                 <p>Mobile No<span>*</span></p>
+                <input  class="form-control text-primary" id="company" type="number"name="Mobile" value="{{Mobile}}" required/>
+              </div>
+              <div class="col-md-6 form-group p_star">
+                 <p>Email<span>*</span></p>
+                
+                <input  class="form-control text-primary" id="number" type="text" name="email" value="{{email}}" required/>
+              </div>
+              <div class="col-md-6 form-group p_star">
+                 <p>city<span>*</span></p>
+                <input  class="form-control text-primary" id="email" type="text" value="{{city}}" name="city" required/>
+               
+              </div>
+              <div class="col-md-6 form-group p_star">
+                 <p>state<span>*</span></p>
+                <input  class="form-control text-primary" id="email"type="text"name="state" value="{{state}}" required />
+            
+              </div>
+              <div class="col-md-6 form-group p_star">
+                <p>pincode<span>*</span></p>
+                <input  class="form-control text-primary" id="email"type="number"name="pincode" value="{{pincode}}" required />
+            
+              </div>
+              <div class="col-md-6 form-group p_star">
+                <p>landmark<span>*</span></p>
+                <input  class="form-control text-primary" id="email" type="text" name="landmark" value="{{landmark}}" required />
+            
+              </div>
+             
+            {{/with}}
+
+            {{!-- <div class="pl-5 pt-2">    --}}
+                                
+              
+
+          </div>
+
+          <div class="col-lg-5">
+            <div class="order_box">
+              <h2>Your Order</h2>
+
+              <ul class="list">
+                <li>
+                  <a >Product
+                    <span>Total</span>
+                  </a>
+                </li>
+                {{#each  cartList}}
+                <ul>
+                <li>
+                  <a class="text-black">{{productName}}
+                    <span>{{Tprice}}</span>
+                  </a>
+                </li>
+
+                </ul>
+              {{/each}}
+                {{!-- {{#each  cartList}}
+                  <ul class="checkout_total_products">
+                <li> 
+                   <pre>
+  {{productName}}      x {{ quantity}}                     <span>{{Tprice}}</span> Rs 
+                   </pre>
+                </li>
+              </ul>
+              {{/each}} --}}
+                
+              </ul>
+              <ul class="list list_2">
+                <li>
+                  <a class="text-danger" >Subtotal
+                    <span class="text-danger">{{totalAmount}}</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="text-danger">wallet
+                    <span class="text-danger">{{wallet}}</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="text-danger" >discountAmount
+                    <span class="text-success" id="discount">{{discountAmount}}</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="text-danger" >Total
+                    <span class="text-success" id="updatedTotal">{{updatedTotal}}
+                  </a>
+                </li>
+              </ul>
+              <div class="payment_item">
+                <div class="radion_btn">
+                   <input class="form-check-input" type="radio" value="COD" name="paymentmethod" id="paymentmethod1">
+                    <label class="form-check-label" for="paymentmethod1"> COD </label>
+                  <div class="check"></div>
+                </div>
+                <p>
+                  Please check and confirm your order items, and totalamount & your delivery address
+                  
+                </p>
+              </div>
+              <div class="payment_item active">
+                <div class="radion_btn">
+                  <input class="form-check-input" type="radio" value="online" name="paymentmethod" id="paymentmethod2" checked>
+                  <label class="form-check-label" for="paymentmethod2">online Payment  </label>
+                  <img src="img/product/single-product/card.jpg" alt="" />
+                  <div class="check"></div>
+                </div>
+                
+              </div>
+             
+               <button type="submit" value="submit" class="btn_3">
+             Proceed
+            </button>              
+            </div>
+          </div>
+
+           </form>
+          
+        </div>
+      </div>
+
+ <a style="width: 15vw;" class="btn_3 ml-5" href="/selectaddress">Select Address</a>
+
+    </div>
+  </section>
+
+
+<!-- Bootstrap 5 CSS -->
+
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"> </script>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<script>
+
+ //<<<<<<<<<<<<<<<<<<<<<<<<<<<< razor pay >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+  $("#checkoutForm").submit((e) => {
+   
+    e.preventDefault();
+    const paymentMethod = document.querySelector(`input[name='paymentmethod']:checked`).value;
+
+    
+    if (paymentMethod == "COD") {
+      $.ajax({
+        url: "/placeOrder",
+        method: "post",
+        data: $("#checkoutForm").serialize(),
+        success: (response) => {
+          swal("Order confirmed !", "Order confirmed !", "success");
+          location.replace("/confirm");
+        },
+      });
+    }
+     else {
+
+        $.ajax({
+            url:"/initiateRazorpay",
+            method:"post",
+            data:$("#checkoutForm").serialize(),
+            success:(response)=>{
+
+          amount = response.razorData.amount 
+          console.log(amount);
+          var options = {
+            "key": "rzp_test_ToiGAhoWsixt7e", // Enter the Key ID generated from the Dashboard
+            "amount": amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            "currency": "INR",
+            "name": "ikeaFurniture",
+            "description": "India's NO.1 furniture selling company",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Ikea-logo.png/1200px-Ikea-logo.png?20140426202804",
+            "order_id": response.razorData.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+            "handler": function (res) {
+
+              verifyPayment(res, response.razorData);
+            },
+            "prefill": {
+              "name": "Gaurav Kumar",
+              "email": "gaurav.kumar@example.com",
+              "contact": "9999999999"
+            },
+            "notes": {
+              "address": "Razorpay Corporate Office"
+            },
+            "theme": {
+              "color": "#3399cc"
+            }
+          };
+          var rzp1 = new Razorpay(options);
+          rzp1.open();
+          e.preventDefault();
+          rzp1.on('payment.failed', function (res) {
+      
+
+          });
+
+            }
+        })
+    }
+  });
+
+//<<<<<<<<<<<<<<<<<<<<<<<<<<< verify payment >>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+   function verifyPayment(razorResponse, razorData) {
+
+    $.ajax({
+      url: '/verifyPayment',
+      data: {
+        razorResponse,
+        razorData
+      },
+      method: 'post',
+      success: (res) => {
+        if (res.status) {
+          location.replace('/confirm');
+        }
+      }
+    })
+  }
+
+
+// <<<<<<<<<<<<<<<<<<  coupon >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    function couponValidator(total){
+       // totalAmount=document.getElementById('totalAmount').text
+        couponId=document.getElementById('couponId').value
+        console.log(couponId);
+         $.ajax({
+    url: '/verifycoupon',
+    data: {
+      couponId:couponId,
+      totalAmount:total
+      },
+
+    method: 'post',
+    success: (response) => {
+        console.log(response.discountAmount);
+          $('#updatedTotal').text(response.updatedTotal);
+          $('#discount').text(response.discountAmount);
+          $('#couponspan').text(response.message);
+          
+    }
+         });
+      }
+</script>
+
+
+
+
+
+
+
+

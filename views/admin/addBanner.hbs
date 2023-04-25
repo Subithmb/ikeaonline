@@ -1,0 +1,50 @@
+
+ <!--================login_part Area =================-->
+    <section class="login_part p-2 h-100vh">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-md-6">
+                    <div class="login_part_text text-center">
+                        <div class="login_part_text_iner">
+                            <h2>New to our Shop?</h2>
+                            <p>There are advances being made in science and technology
+                                everyday, and a good example of this is the</p>
+                           
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="login_part_form">
+                        <div class="login_part_form_iner">
+                            <h3>Welcome ! <br>
+                                Please Add-New Banner now</h3>
+                            <form class="row contact_form" action="/bannersubmit"  method="post" enctype="multipart/form-data">
+                                <div class="col-md-12 form-group p_star">
+                                    <input type="text" class="form-control" id="name" name="bannerName" 
+                                        placeholder="bannerName" required>
+                                </div>
+                                <div class="col-md-12 form-group p_star">
+                                    <input type="text" class="form-control" id="price" name="discription"
+                                        placeholder="discription" required>
+                                </div>
+                               
+                              
+                                <div class="col-md-12 form-group p_star">
+                                    <input type="file" class="form-control" id="image"  name="image" 
+                                        placeholder="add image" required>
+                                </div>
+                                <div class="col-md-12 form-group">
+                                   
+                                    <button type="submit" value="AddProduct" class="btn_3">
+                                        Add Product
+                                    </button>
+                                    <p style="color: rgb(234, 9, 9);">{{message}}</p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================login_part end =================-->

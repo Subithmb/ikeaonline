@@ -1,0 +1,101 @@
+
+  <!--================Home Banner Area =================-->
+  <!-- breadcrumb start-->
+  <section class="col-12 breadcrumb ">
+    <div class="col-12 container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 ">
+          <div class="breadcrumb_iner">
+            <div class="breadcrumb_iner_item ">
+              <h2 class="row justify-content-center">WISH LIST</h2>
+              <p class="row justify-content-center">Home <span>-</span>Wishlist</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- breadcrumb start-->
+
+  <!--================Cart Area =================-->
+  <section class="col-12 cart_area padding_top">
+    <div class="container">
+      <div class="cart_inner">
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Product</th>
+                <th scope="col">Price</th>
+                {{!-- <th scope="col">Quantity</th> --}}
+                <th scope="col">Cart</th>
+                <th scope="col">Remove</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each stocks}}
+              <tr>
+                <td>
+                  <div class="media">
+                    <div class="d-flex">
+                      <img style="width: 150px;" src="/productImages/{{image.[0]}}" alt="" />
+                    </div>
+                    <div class="media-body">
+                      <p>{{productName}}</p>
+                    </div>
+                  </div>
+                </td>
+
+                <td>
+                  <h5>{{price}}</h5>
+                </td>
+                 <td>
+                  {{!-- <a class="text-success" href="/cartDataAdding?id={{_id}}"><i class="fas fa-cart-plus fa-2xl"></i></a> --}}
+                   <a href="" id="wish" onclick="addToCartlist('{{this._id}}');"><i class="fas fa-cart-plus fa-2xl"></i></a>
+                </td>
+                 <td>
+                  <a class="text-danger" href="/removeWishlist?id={{_id}}"><i class="fas fa-trash fa-2xl"></i></a>
+                </td>
+
+              </tr>
+              {{/each}}
+               </tbody>
+          </table>
+            <div class="checkout_btn_inner float-right">
+            <a class="btn_1" href="/userShop">Continue Shopping</a>
+           
+          </div>
+          </div>
+          </div>
+          </div>
+          </section>
+
+
+
+
+
+
+
+
+
+      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>    
+     <script>
+       function addToCartlist(proId) {
+        
+        event.preventDefault()
+        $.ajax({
+            url: '/cartDataAdding',
+            data: {
+           product: proId,},
+           method: 'post',
+          success: (response) => {   
+         if (response) {
+
+         swal("Product added to Cart !", "Product added to Cart !", "success");}
+  },
+  error: (error) => {
+   alert(error)
+            } },)
+}
+   </script>
+       

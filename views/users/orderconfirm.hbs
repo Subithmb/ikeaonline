@@ -1,0 +1,153 @@
+
+
+ 
+     <!--================Home Banner Area =================-->
+    <!-- breadcrumb start-->
+    <section class="breadcrum">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="breadcrumb_ine">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- breadcrumb start-->
+    
+     <!--================Home Banner Area =================-->
+    <!-- breadcrumb start-->
+    <section class="breadcrumbs">
+        <div class="container">
+            <div class="row justify-content-center">
+              <img class="pt-5" src="https://cdn.dribbble.com/users/2185205/screenshots/7886140/02-lottie-tick-01-instant-2.gif" alt="">
+               
+            </div>
+        </div>
+    </section>
+    <!-- breadcrumb start-->
+
+  <!--================Cart Area =================-->
+  <section class="col-12 cart_area pt-2">
+    <div class="container">
+       <div class="card-header px-4 py-5">
+            <h5 class="text-muted mb-0">Thanks for your Order, <span style="color: #b9148d;">{{username}}</span>!</h5>
+          </div>
+           <div class="d-flex justify-content-between align-items-center mb-4">
+              <p class="lead fw-normal mb-0" style="color: #cf20a0;">Receipt</p>
+              <p class="small text-muted mb-0">Receipt Voucher : 1KAU9-84UIL</p>
+            </div>
+            <div class="row" >
+              <div class=" col-md-6">
+               <div class="d-flex justify-content-between mb-2 pr-5">
+              <h5 class="text-muted mb-0 pl-3">SHIPPING From</h5><br>
+             </div>
+           
+              <div class="d-flex justify-content-between  pr-5">
+              <p class="text-muted mb-0 pl-3">IKEA furniture .Ltd</p><br>
+            </div>
+               <div class="d-flex justify-content-between  pr-5">
+              <p class="text-muted mb-0 pl-3">kerela</p><br>
+            </div>
+               <div class="d-flex justify-content-between  pr-5">
+              <p class="text-muted mb-0 pl-3">670570</p><br>
+            </div>
+               <div class="d-flex justify-content-between  pr-5">
+              <p class="text-muted mb-0 pl-3">www.IKEA.com</p><br>
+            </div>
+              </div>
+              <div class=" col-md-6 pb-5">
+               <div class="d-flex justify-content-between mb-2 pr-5">
+              <h5 class="text-muted mb-0 pl-3">SHIPPING TO</h5><br>
+             
+            </div>
+            <div class="d-flex justify-content-between  pr-5">
+              <p class="text-muted mb-0 pl-3">{{confirmData.address.[0].name}}{{confirmData.address.[0].lastname}}</p><br>
+            </div>
+            <div class="d-flex justify-content-between  pr-5">
+              <p class="text-muted mb-0 pl-3">{{confirmData.address.[0].Mobile}}</p>
+            </div>
+            <div class="d-flex justify-content-between  pr-5">
+               <p class="text-muted mb-0 pl-3">{{confirmData.address.[0].city}}</p><br>
+            </div>
+            <div class="d-flex justify-content-between  pr-5">
+              <p class="text-muted mb-0 pl-3">{{confirmData.address.[0].state}}</p><br>
+            </div>
+            <div class="d-flex justify-content-between  pr-5">
+              <p class="text-muted mb-0 pl-3">{{confirmData.address.[0].landmark}}</p><br>
+            </div>
+            <div class="d-flex justify-content-between  pr-5">
+            <p class="text-muted mb-0 pl-3">{{confirmData.address.[0].pincode}}</p><br> 
+           </div>
+              </div>
+
+            </div>
+      <div class="cart_inner">
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Image</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">quantity</th>
+                <th scope="col">totalAmount</th>
+                {{!-- <th scope="col">Quantity</th> --}}
+                
+               
+              </tr>
+            </thead>
+            <tbody>
+              {{#each orderData}}
+              <tr>
+                <td>
+                  <div class="media">
+                    <div class="d-flex">
+                      <img style="width: 150px;" src="/productImages/{{image.[0]}}" alt="" />
+                    </div>
+                   
+                  </div>
+                </td>
+
+                <td>
+                  <h5>{{Name}}</h5>
+                </td>
+                <td>
+                  <h5>{{quantity}}</h5>
+                </td>
+                <td>
+                  <h5>{{Tprice}}</h5>
+                </td>
+                
+              </tr>
+              {{/each}}
+               </tbody>
+          </table>
+           <div class="d-flex justify-content-between pt-2 pr-5">
+              <p class="fw-bold mb-0 pl-3">Order Details</p>
+              <p class="text-muted mb-0"><span class="fw-bold me-4">Total ;</span>  {{ totalAmount}}</p>
+            </div>
+
+            <div class="d-flex justify-content-between pt-2 pr-5">
+              <p class="text-muted mb-0 pl-3">Invoice Number :ikea{{confirmData._id}}</p>
+              <p class="text-muted mb-0"><span class="fw-bold me-4">Discount : </span>{{ discountAmount}}</p>
+            </div>
+             <div class=" border-0 px-4 py-5"
+            style=" border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
+            <p class="text-muted mb-0 text-danger"><span class="fw-bold me-4 text-danger">OrderStatus : </span> {{ confirmData.orderStatus}}</p>
+              <p class="text-muted mb-0 text-danger"><span class="fw-bold me-4 text-danger">Create Date :</span> {{ confirmData.createdAt}}</p>
+              <p class="text-muted mb-0 text-danger"><span class="fw-bold me-4 text-danger">updatedAt :</span> {{ confirmData.updatedAt}}</p>
+          </div>
+             <div class="card-footer border-0 px-4 py-5 "
+            style="background-color:  hsl(216, 2%, 52%); border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
+            <h5 class="d-flex align-items-center justify-content-end text-white text-uppercase mb-0">Total
+              paid :  <span class="h2 mb-0 ms-2 pr-3"> {{updatedTotal}}</span></h5>
+          </div>
+            <div class="checkout_btn_inner float-right pt-5">
+            <a class="btn_1" href="/userShop">Continue Shopping</a>
+           
+          </div>
+          </div>
+          </div>
+          </div>
+          </section>

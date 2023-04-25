@@ -1,0 +1,135 @@
+<!--================login_part Area =================-->
+<section class="login_part p-2 h-100vh">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6 col-md-6">
+        <div class="row d-fles pb-5">
+
+          <div class="col-6 col-sm-4 w-30vw h-30vh"><img
+              src="/productImages/{{ar1}}"
+              alt=""
+            /></div>
+          <div class="col-6 col-sm-4 w-30vw h-30vh"><img
+              src="/productImages/{{ar2}}"
+              alt=""
+            /></div>
+          <div class="col-6 col-sm-4 w-30vw h-30vh"><img
+              src="/productImages/{{ar3}}"
+              alt=""
+            /></div>
+
+          <div class="col-6 col-sm-4 w-30vw h-30vh"><img
+              src="/productImages/{{img1}}"
+              alt=""
+            /></div>
+          <div class="col-6 col-sm-4 w-30vw h-30vh"><img
+              src="/productImages/{{img2}}"
+              alt=""
+            /></div>
+          <div class="col-6 col-sm-4 w-30vw h-30vh"><img
+              src="/productImages/{{img3}}"
+              alt=""
+            /></div>
+
+        </div>
+        <div class="row pt-3 pb-5">
+
+          <form
+            class="row contact_form"
+            action="/submitproductphotos?id={{_id}}"
+            method="post"
+            enctype="multipart/form-data"
+          >
+
+            <div class="col-md-12 form-group p_star">
+              <input
+                type="file"
+                multiple
+                class="form-control"
+                id="image"
+                value="{{image}}"
+                name="image"
+                placeholder="add image"
+                required
+              />
+            </div>
+            <div class="col-md-6 form-group">
+              <input type="hidden" name="id" value="{{_id}}" />
+              <button type="submit" value="AddProduct" class="btn_3">
+                Add product photo
+              </button>
+              <p style="color: rgb(234, 9, 9);">{{message}}</p>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6">
+        <div class="login_part_form">
+          <div class="login_part_form_iner">
+            <h3>Welcome !
+              <br />
+              Please Add-Products now</h3>
+            <form
+              class="row contact_form"
+              action="/submitproduct?id={{_id}}"
+              method="post"
+            >
+              <div class="col-md-12 form-group p_star">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  name="productName"
+                  value="{{productName}}"
+                  required
+                />
+              </div>
+              <div class="col-md-12 form-group p_star">
+                <input
+                  type="number"
+                  class="form-control"
+                  id="price"
+                  name="price"
+                  value="{{price}}"
+                  required
+                />
+              </div>
+              <div class="col-md-12 form-group p_star">
+                <input
+                  type="number"
+                  class="form-control"
+                  id="price"
+                  name="quantity"
+                  value="{{quantity}}"
+                  required
+                />
+              </div>
+              <div class="col-md-12 form-group p_star">
+                <select
+                  name="category"
+                  class="form-select border-0 outline-0"
+                  aria-label="Default select example"
+                >
+                  <option
+                    value="{{currentCategoryid}}"
+                    selected
+                  >{{currentCategory}}</option>
+                  {{#each categoryData}}
+                    <option value="{{_id}}">{{categoryName}}</option>
+                  {{/each}}
+                </select>
+              </div>
+              <div class="col-md-12 form-group">
+                <button type="submit" value="AddProduct" class="btn_3">
+                  Add Product
+                </button>
+                <p style="color: rgb(234, 9, 9);">{{message}}</p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--================login_part end =================-->

@@ -1,0 +1,211 @@
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+ <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+            <div class="d-flex mt-5">
+
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+
+<script>
+  const mo = parseInt('{{mo}}')
+               const tu = parseInt('{{tu}}')
+               const we = parseInt('{{we}}')
+               const th = parseInt('{{th}}')
+               const fr = parseInt('{{fr}}')
+               const sa = parseInt('{{sa}}')
+               const su = parseInt('{{su}}')
+ var xValues = ["mon", "tue", "wed", "thu", "fri","sat","sun"];
+            var yValues = [mo, tu, we, th, fr,sa,su];
+           var barColors = ["red", "green","blue","orange","brown","light blue","black"];
+new Chart("myChart", {
+  type: "bar",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }]
+  },
+  options: {
+    legend: {display: false},
+    title: {
+      display: true,
+      text: "IKEA furniture 2023 Weekly Report"
+    }
+  }
+});
+</script>
+            <!-- Widgets Start -->
+            <div class="container-fluid pt-4 px-4 mb-5">
+                <div class="row g-4">
+                    <div class="w-100 bg-light col-sm-12 col-md-6 col-xl-4">
+                        <div class="w-100 bg-light rounded p-4">
+                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                <h6 class="mb-0">Calender</h6>
+                                {{!-- <a href="">Show All</a> --}}
+                            </div>
+                            <div id="calender"></div>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+            <!-- Widgets End --> 
+            </div>
+
+<div class="d-flex">
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<div
+id="myChart1" style="width:100%; max-width:600px; height:500px;">
+</div>
+<script>
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+function drawChart() {
+const data = google.visualization.arrayToDataTable([
+  ['Contry', 'Mhl'],
+  ['Italy',54.8],
+  ['France',48.6],
+  ['Spain',44.4],
+  ['USA',23.9],
+  ['Argentina',14.5]
+]);
+
+const options = {
+  title:'IKEA furniture 2023 category Report'
+};
+const chart = new google.visualization.PieChart(document.getElementById('myChart1'));
+  chart.draw(data, options);
+}
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+<canvas id="myChart2" style="width:100%;max-width:600px "></canvas>
+
+<script>
+  const a = parseInt('{{a}}')
+  const b =  parseInt('{{b}}')
+  const c =  parseInt('{{c}}')
+  const d =  parseInt('{{d}}')
+  const p =  parseInt('{{p}}')
+  console.log(a,b,c,'-------vLUEA----')
+var xValues = ["delivered","dispatched", "orderd","pending", "cancelled"];
+var yValues = [d,c,a,p,b];
+var barColors = [
+  "#42a832",
+  "#de7009",
+  "#093bde",
+  "#f0f725",
+  "#de0909"
+ 
+];
+
+new Chart("myChart2", {
+  type: "doughnut",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }]
+  },
+  options: {
+    title: {
+      display: true,
+      text: "IKEA furniture 2023 Order Report"
+    }
+  }
+});
+</script>
+
+</div>
+
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+		integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.13.3/css/dataTables.bootstrap5.min.css">
+	<script src="https://cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js"></script>
+
+<section>
+    <div class="container">
+    <div class="row">
+     
+         </div>
+  <div class="container-fluid">
+    <table id="datatable" class="table table-striped mt-5">
+      <thead>
+        <tr>
+          
+          <th scope="col">PRODUCT NO </th>
+          <th scope="col">TOTAL</th>
+          <th scope="col">DISCOUNT</th>
+          <th scope="col">UPDATED TOTAL</th>
+          <th scope="col">PAYMENT METHOD</th>
+          {{!-- <th scope="col">PAYMENT STATUS</th> --}}
+          <th scope="col">ORDER STATUS</th>
+          <th scope="col">DATE</th>
+         
+        </tr>
+      </thead>
+      <tbody>
+        {{#each orderData}}
+        <tr>
+         
+          <td>{{ _id}}</td>
+          <td>{{totalAmount}}</td>
+         
+          <td>{{discount}}</td>
+          <td>{{updatedtotal}}</td>
+          <td>{{paymentmethod}}</td>
+          {{!-- <td>{{paymentStatus}}</td> --}}
+          <td>{{orderStatus}}</td>
+          <td>{{date}}</td>
+      
+        </tr>
+       {{/each}}
+      </tbody>
+    </table>
+  </div>
+  </div>
+  <DIV>
+    <button type="button" class="btn btn-danger btn-sm" style="margin-left: 4px;" onclick="downloadPDF()">Export to PDF</button>
+    <button type="button" class="btn btn-success btn-sm" style="margin-left: 4px;" onclick="downloadExcel()">Downloard Execl file</button>
+  </DIV>
+</section>
+
+<script>
+$(document).ready(function () {
+    $('#datatable').DataTable();
+});
+</script>
+{{!-- <a href=""  onclick="Deletedata('{{this._id}}');"> add to cart</a> --}}
+<script>    
+    function downloadPDF() {
+    var table = document.getElementById("datatable");
+    var newWin = window.open('', 'Print-Window');
+    newWin.document.open();
+    newWin.document.write('<html><body onload="window.print()">' + table.outerHTML + '</html>');
+    newWin.document.close();
+    setTimeout(function () { newWin.close(); }, 10);
+	  }
+
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
+
+         <script>
+            function downloadExcel() {
+  var table = document.getElementById("datatable");
+  var worksheet = XLSX.utils.table_to_sheet(table);
+  var workbook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+  XLSX.writeFile(workbook, "table.xlsx");
+}
+</script>
+

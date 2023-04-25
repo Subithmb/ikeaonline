@@ -1,0 +1,139 @@
+<!--================login_part Area =================-->
+    <section class="login_part p-2 h-100vh">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-md-6">
+                    <div class="login_part_text text-center">
+                        <div class="login_part_text_iner">
+                            <h2>New to our Shop?</h2>
+                            <p>There are advances being made in science and technology
+                                everyday, and a good example of this is the</p>
+                            <a href="/login" class="btn_3">Log In</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="login_part_form">
+                        <div class="login_part_form_iner">
+                            <h3>Welcome ! <br>
+                                Please Sign up now</h3>
+                            <form name="forms"  onsubmit="return userregister()" action="/usersignUpSubmit" method="post">
+                                <div class="col-md-12 form-group p_star">
+                                    <input type="text" class="form-control" id="name" name="firstName" 
+                                        placeholder="First name" >
+                                </div>
+                                <div class="col-md-12 form-group p_star">
+                                    <input type="text" class="form-control" id="name" name="lastName"
+                                        placeholder="Last name">
+                                </div>
+                                <div class="col-md-12 form-group p_star">
+                                    <input type="email" class="form-control" id="name" name="email" 
+                                        placeholder="Email address" >
+                                </div>
+                                <div class="col-md-12 form-group p_star">
+                                    <input type="number" class="form-control" id="name" name="mobile"  
+                                        placeholder="Phone Number" >
+                                </div>
+                                <div class="col-md-12 form-group p_star">
+                                    <input type="password" class="form-control" id="password"  name="password" 
+                                        placeholder="Password" >
+                                </div>
+                                <div class="col-md-12 form-group">
+                                   
+                                    <p id="error-errmess" style="color: brown;">{{error}}</p>
+                                    <button type="submit"  class="btn_3">
+                                        Sign Up
+                                    </button>
+                                    
+                                    {{!-- <a class="lost_pass" href="#">forget password?</a> --}}
+                                     <p style="color: rgb(234, 9, 9);">{{message}}</p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================login_part end =================-->
+
+
+ {{!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+ <script>
+  
+  const form = document.querySelector('form');
+  form.addEventListener('submit', e => {
+    if (!form.checkValidity()) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    form.classList.add('is-validated');
+  });
+</script> --}}
+
+
+<script>
+    
+
+function userregister(){
+   
+  var firstName=document.forms.firstName.value;
+  var lastName=document.forms.lastName.value;
+  var email=document.forms.email.value;
+  var mobile=document.forms.mobile.value;
+  var password=document.forms.password.value;
+ // var cpassword=document.submit.cpassword.value;
+
+  var reg =    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  var nameerror= /^(?!-)[a-zA-Z-]*[a-zA-Z]$/;
+  var phoneerror=(/^[0-9]{10}$/);
+  var passerror=(/^(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.{8,})/)
+  var error=document.getElementById("error-errmess");
+
+  if(firstName==""){
+      error.innerHTML='Please enter your firstname'
+      return false;
+  }
+  if(lastName==""){
+      error.innerHTML='Please enter your lastname'
+      return false;
+  }
+  if(nameerror.test(firstName)==false){
+    error.innerHTML='invalid firstname'
+    return false;
+} 
+  if(nameerror.test(lastName)==false){
+    error.innerHTML='invalid lastname'
+    return false;
+} 
+if(firstName.length<4){
+     error.innerHTML='Name should contain atleast 5 elements'
+      return false;
+  }
+if(lastName.length<3){
+     error.innerHTML='Name should contain atleast 5 elements'
+      return false;
+  }
+  if(email==""){
+      error.innerHTML='Please enter your email id'
+      return false;
+  }
+  if(reg.test(email)==false){
+    error.innerHTML='invalid email id'
+    return false;
+  }
+  if(phoneerror.test(mobile)==false){
+      error.innerHTML='Phone number should contain 10 numbers'
+      return false;
+  }
+  if(passerror.test(password)==false){
+      error.innerHTML='password must contain 8 characters, at least one special character, and at least one uppercase letter'
+      return false;
+  }
+  
+  return true;
+
+}
+</script>

@@ -1,0 +1,234 @@
+<style>
+.quantity {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+.quantity__minus,
+.quantity__plus {
+  display: block;
+  width: 22px;
+  height: 23px;
+  margin: 0;
+  background: #dee0ee;
+  text-decoration: none;
+  text-align: center;
+  line-height: 23px;
+}
+
+.quantity__minus:hover,
+.quantity__plus:hover {
+  background: #575b71;
+  color: #fff;
+} 
+.quantity__minus {
+  border-radius: 3px 0 0 3px;
+}
+.quantity__plus {
+  border-radius: 0 3px 3px 0;
+}
+.quantity__input {
+  width: 32px;
+  height: 19px;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  border-top: 2px solid #dee0ee;
+  border-bottom: 2px solid #dee0ee;
+  border-left: 1px solid #dee0ee;
+  border-right: 2px solid #dee0ee;
+  background: #fff;
+  color: #8184a1;
+}
+.quantity__minus:link,
+.quantity__plus:link {
+  color: #8184a1;
+} 
+.quantity__minus:visited,
+.quantity__plus:visited {
+  color: #fff;
+}
+</style>
+
+ <!--================Home Banner Area =================-->
+  
+     <!-- breadcrumb start-->
+    <section class="breadcrumb">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="breadcrumb_iner">
+                        <div class="breadcrumb_iner_item">
+                            <h2 class="row justify-content-center">Cart Products</h2>
+                            <p class="row justify-content-center">Home <span>-</span>Cart</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- breadcrumb start-->
+
+  <!--================Cart Area =================-->
+  <section class="col-12 cart_area padding_top">
+    <div class="container">
+      <div class="cart_inner">
+        <div class="table-responsive">
+          <table class="col-12 table">
+            <thead>
+              <tr>
+                <th scope="col">Product</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Total</th>
+                <th scope="col">Remove</th>
+              </tr>
+            </thead>
+            <tbody>
+        {{#each cartList}}
+             
+              <tr>
+                <td>
+                  <div class="media">
+                    <div class="d-flex">
+                     <img style="width: 150px;" src="/productImages/{{image.[0]}}" alt="" />
+                    </div>
+                    <div class="media-body">
+                      <p>{{productName}}</p>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <h5><i class="fa fa-indian-rupee-sign fa-xs" style="color: #000000;"></i>{{price}}</h5>
+                </td>
+                 <td  class="product_quantity">
+                  <div class="container">
+                  <button id="decBtn" onclick="decrease('{{productId._id}}','{{productId._id}}_data-value')">-</button>
+                
+                  <input id="{{productId._id}}_data-value" type="text" min=1 value="{{quantity}}" disabled style="width:3vw"  />
+                  <button onclick="increase('{{productId._id}}','{{productId._id}}_data-value')">+</button>
+                </div>
+                </td>
+                <td>
+                  <h5 id="{{productId._id}}_price_sub"><i class="fa fa-indian-rupee-sign fa-xs" style="color: #000000;"></i>{{Tprice}}</h5>
+                </td>
+                 <td>
+                  <a class="text-danger" onclick="return confirm('Do You Want To Delete This Category ')" href="/cartDataRemove?id={{productId._id}}"><i class="fas fa-trash fa-xl"></i></a>
+                  {{!-- <a class="text-danger" href="" onclick="removeDataWishlist('{{productId._id}}')"><i class="fas fa-trash fa-2xl"></i></a> --}}
+                </td>
+              </tr>
+                  {{/each}}
+                <tr><td></td>
+                <td></td>
+                <td><h5>Sub.Total</h5></td>
+                  <td><h5 style="font-weight: bold;font-size:large" id="price-total"><i class="fa fa-indian-rupee-sign fa-xl" style="color: #000000;"></i>{{totalAmount}}</h5></td>
+                </tr>
+            </tbody>
+          </table>
+          <div class="checkout_btn_inner float-right">
+            <a class="btn_1" href="/userShop">Continue Shopping</a>
+            <a class="btn_1 checkout_btn_1" href="/checkout">Proceed to checkout</a>
+          </div>
+        </div>
+      </div>
+  </section>
+  <!--================End Cart Area =================-->
+
+
+
+ 
+  
+      
+
+
+{{!-- quantity increment decrement   --}}
+
+
+
+ <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+function decrease(id, quantity) {
+  console.log('dsbbfdbfdbnfdgbnfgfgfgfgfgfgfgfgfgfgfgfgn')
+const check = document.getElementById(`${id}_data-value`).value
+
+
+console.log(check)
+     if(check>=2){
+     
+         $.ajax({
+    url: '/decrement',
+    method: 'patch',
+    data: {
+      id: id,
+      quantity: check
+    },
+    success: (response) => {
+      
+
+      
+      
+   
+    
+  $(`#${id}_data-value`).val(response.value1.quantity)
+  $('#price-total').html('<i class="fa fa-indian-rupee-sign fa-xl" style="color: #000000;"></i>'+response.totalAmount)
+   $(`#${id}_price_sub`).html('<i class="fa fa-indian-rupee-sign fa" style="color: #000000;"></i>'+response.price)
+
+    },
+    error: (error) => {
+      alert(error);
+    }
+  });
+
+     }
+
+     else{            
+   
+Swal.fire({
+  icon: 'error',
+  title: 'Oops...',
+  text: 'the stoke limit reach!',
+  
+})
+     }
+
+
+      }
+ 
+
+
+function increase(id, quantity) {
+
+  const check = document.getElementById(`${id}_data-value`).value
+
+  $.ajax({
+    url: '/increment',
+    method: 'patch',
+    data: {
+      id: id,
+      check: check
+    },
+    success: (response) => {
+    
+      if(response.success==false){
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'the stoke limit reach!',
+  
+       })
+      }else{
+      $('#stoke').val(response.stock)
+   
+ $(`#${id}_data-value`).val(response.value1.quantity)
+ $('#price-total').html('<i class="fa fa-indian-rupee-sign fa-xl" style="color: #000000;"></i>'+response.totalAmount)
+ $(`#${id}_price_sub`).html('<i class="fa fa-indian-rupee-sign fa" style="color: #000000;"></i>'+response.price)
+      }
+    },
+    error: (error) => {
+      alert(error);
+    }
+  });
+}
+</script>

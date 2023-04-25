@@ -1,0 +1,31 @@
+
+<!doctype html>
+<html lang="zxx">
+<head>
+    {{#if user1}}
+    {{>userHeadPage}}
+    {{/if}}
+    {{#if admin1}}
+    {{>adminHeadPage}}
+    {{/if}}
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+    {{#if user}}
+    {{>userheader}}
+    {{/if}}
+    {{#if admin1}}
+    {{>adminHeader}}
+    {{/if}}
+    {{{body}}} 
+    {{#if user}}
+    {{>footter}}
+    {{/if}}
+    {{#if user1}}
+    {{>userHeadPageEnd}}
+    {{/if}}
+    {{#if admin1}}
+    {{>adminHeadpageEnd}}
+    {{/if}}
+</body>
+</html>

@@ -1,0 +1,252 @@
+
+
+
+
+    <!-- banner part start-->
+    <section class="banner_part">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-12"> 
+                    <div class="banner_slider owl-carousel">
+                        {{#each bannerData}}
+
+                        <div class="single_banner_slider">
+                            <div class="row">
+                                <div class="col-lg-5 col-md-8">
+                                    <div class="banner_text">
+                                        <div class="banner_text_iner">
+                                            <h2>{{bannerName}}</h2>
+                                            <p>{{discription}}</p>
+                                            <a href="/userShop" class="btn_2">buy now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="banner_img d-none d-lg-block">
+                                    <img src="/productImages/{{image}}" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        {{/each}}
+                    </div>
+                    <div class="slider-counter"></div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- banner part start-->
+
+    <!-- feature_part start-->
+    <section class="feature_part">
+        <div class="container">
+
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="section_tittle text-center pt-4">
+                        <h2>Featured Category</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row align-items-center justify-content-between">
+                      {{#each bannerData1}}
+                <div class="col-12 col-lg-6 col-sm-6">
+                    <div  style="background-image: url('/productImages/{{image}}'); background-repeat: no-repeat;" class="single_feature_post_text ">
+                        
+                        <p style="position: absolute;">Premium Quality</p>
+                        <h3 style="position: absolute;">New Products</h3><br>
+
+                      
+                        <a href="/userShop" class="feature_btn">EXPLORE NOW <i class="fas fa-play"></i></a>
+                        {{!-- <img  style="width:20vw; height: 20vw;" src="/productImages/{{image}}" alt=""> --}}
+                    </div>
+                </div>
+                     {{/each}}
+
+                {{!-- <div class="col-lg-5 col-sm-6">
+                    <div class="single_feature_post_text">
+                        <p>Premium Quality</p>
+                        <h3>Latest foam Sofa</h3>
+                        <a href="#" class="feature_btn">EXPLORE NOW <i class="fas fa-play"></i></a>
+                        <img src="img/feature/feature_2.png" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-5 col-sm-6">
+                    <div class="single_feature_post_text">
+                        <p>Premium Quality</p>
+                        <h3>Latest foam Sofa</h3>
+                        <a href="#" class="feature_btn">EXPLORE NOW <i class="fas fa-play"></i></a>
+                        <img src="img/feature/feature_3.png" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-7 col-sm-6">
+                    <div class="single_feature_post_text">
+                        <p>Premium Quality</p>
+                        <h3>Latest foam Sofa</h3>
+                        <a href="#" class="feature_btn">EXPLORE NOW <i class="fas fa-play"></i></a>
+                        <img src="img/feature/feature_4.png" alt="">
+                    </div>
+                </div> --}}
+
+            </div>
+            
+        </div>
+    </section>
+    <!-- upcoming_event part start-->
+
+    <!-- product_list start-->
+    <section class="product_list section_padding">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="section_tittle text-center">
+                        <h2>awesome</h2>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="product_list_slider owl-carousel">
+                        <div class="single_product_list_slider">
+                            <div class="row d-flex align-items-center justify-content-between">
+                                {{#each productData}}
+                                <div class="col-lg-3 col-sm-6">
+                                    <div class="single_product_item">
+                                        <a href="/productDetails?id={{_id}}"><img style="width: 16rem; height: 20rem;" src="/productImages/{{image.[0]}}" alt=""></a>
+                                        <div class="single_product_text">
+                                            <h4>{{productName}}</h4>
+                                            <h3>{{category.categoryName}}</h3>
+                                            <h3><i class="fa fa-indian-rupee-sign  "></i> {{price}}</h3>
+                                             <a href="" id="cart" onclick="addToCartlist('{{this._id}}');"> add to cart</a>
+                                             {{!-- <a href="/cartDataAdding?id={{_id}}" class="add_cart">+ add to cart</a> --}}
+                                            {{!-- <a href="/wishlistData?id={{_id}}"><i class="ti-heart"></i></a> --}}
+                                             <a href="" id="wish" onclick="addToWishlist('{{this._id}}');"><i class="ti-heart"></i></a>
+                                            {{!-- <a href="/wishlistData?id={{_id}}" class="add_cart">+ add to cart<i class="ti-heart"></i></a> --}}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {{/each}}
+                        </div>
+
+                        </div>
+                        <div class="single_product_list_slider">
+                            <div class="row align-items-center justify-content-between">
+                                    {{#each productData}}
+                                <div class="col-lg-3 col-sm-6">
+                                    <div class="single_product_item">
+                                        <a href="/productDetails?id={{_id}}"><img style="width: 16rem; height: 20rem;" src="/productImages/{{image.[1]}}" alt=""></a>
+                                        <div class="single_product_text">
+                                            <h4>{{productName}}</h4>
+                                            <h3>{{category.categoryName}}</h3>
+                                            <h3><i class="fa fa-indian-rupee-sign  "></i> {{price}}</h3>
+                                             <a href="" id="cart" onclick="addToCartlist('{{this._id}}');"> add to cart</a>
+                                             {{!-- <a href="/cartDataAdding?id={{_id}}" class="add_cart">+ add to cart</a> --}}
+                                            {{!-- <a href="/wishlistData?id={{_id}}"><i class="ti-heart"></i></a> --}}
+                                             <a href="" id="wish" onclick="addToWishlist('{{this._id}}');"><i class="ti-heart"></i></a>
+                                            {{!-- <a href="/wishlistData?id={{_id}}" class="add_cart">+ add to cart<i class="ti-heart"></i></a> --}}
+                                        </div>
+                                    </div>
+                                </div>
+
+                             {{/each}}
+                        </div>
+
+                        </div>
+                        <div class="single_product_list_slider">
+                            <div class="row align-items-center justify-content-between">
+                                {{#each productData}}
+                                <div class="col-lg-3 col-sm-6">
+                                    <div class="single_product_item">
+                                       <a href="/productDetails?id={{_id}}"><img style="width: 16rem; height: 20rem;" src="/productImages/{{image.[2]}}" alt=""></a> 
+                                        <div class="single_product_text">
+                                            <h4>{{productName}}</h4>
+                                            <h3>{{category.categoryName}}</h3>
+                                            <h3><i class="fa fa-indian-rupee-sign  "></i> {{price}}</h3>
+                                             <a href="" id="cart" onclick="addToCartlist('{{this._id}}');"> add to cart</a>
+                                            
+                                              <a href="" id="wish" onclick="addToWishlist('{{this._id}}');"><i class="ti-heart"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                               
+                                {{/each}}
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.min.js"></script>
+
+   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+    <script>
+
+      function addToWishlist(proId) {
+        
+        event.preventDefault()
+        $.ajax({
+        url: '/wishlistData',
+        data: {
+        product: proId,},
+
+    method: 'post',
+    success: (response) => {
+                   
+    if (response) {
+    swal("Product added to wishlist!", "Product added to Whishlist!", "success");
+    } },
+    error: (error) => {
+    alert(error+'error')
+     } },)
+ }
+
+
+   </script>
+
+
+
+   </script>
+<script>
+    function addToCartlist(proId) {
+        
+        event.preventDefault()
+        $.ajax({
+            url: '/cartDataAdding',
+            data: {
+           product: proId,},
+           method: 'post',
+          success: (response) => { 
+           console.log(response)
+           if(response.quantity > 0){
+  Swal.fire("Product added to Cart !", "Product added to Cart !", "success");
+}else{
+  Swal.fire("Product Out Of Stock !", "Product Out Of Stock !", "error");
+} 
+   
+  },
+  error: (error) => {
+   alert(error)
+            } },)
+}
+</script>
+
+
+
+    

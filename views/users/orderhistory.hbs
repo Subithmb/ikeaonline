@@ -1,0 +1,98 @@
+ <!-- breadcrumb start-->
+    <section style="background-color:#efefef; height: 10vh;width: 100%;">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="breadcrumb_iner">
+                        <div class="breadcrumb_iner_item">
+                            {{!-- <h2 class="row justify-content-center"></h2> --}}
+                            {{!-- <p class="row justify-content-center">Home <span>-</span> Shop Category</p> --}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- breadcrumb start-->
+<section style="">
+    <div class="container">
+    <div class="row">
+         </div>
+  <div class="container-fluid">
+    <table id="history" class="table table-striped mt-5">
+      <thead>
+        <tr>
+           <th scope="col">OrderNo</th>
+          {{!-- <th scope="col">productName</th> --}}
+          <th scope="col">toalprice</th> 
+          {{!-- <th scope="col">delivery address</th> --}}
+          <th scope="col"> paymentmethod </th>
+          <th class="text-center" scope="col">payment status</th> 
+          <th class="text-center" scope="col">order status</th> 
+          <th class="text-center" scope="col">order cancel</th> 
+           {{!-- <th class="text-center" scope="col">Edit</th> --}}
+          <th class="text-center" scope="col">view order</th> 
+        </tr>
+      </thead>
+      <tbody>
+        {{#each confirmData}}
+        <tr>
+        {{!-- <td><img style="width: 90px; height: 90px;" src="/productImages/{{image.[0]}}" alt=""></td> --}}
+          <td>{{_id}}</td>
+          {{!-- <td>{{productname}}</td> --}}
+          <td>{{totalAmount}}</td>
+          {{!-- <td>{{address.name}}</td> --}}
+          <td>{{ paymentmethod}}</td>
+          <td>{{paymentStatus}}</td>
+          <td>{{orderStatus}}</td>
+        
+          <td class="text-center"> <a id="status" class="btn_1 checkout_btn_1 mt-5"onclick="cancelorder('{{_id}}','{{orderStatus}}')">cancel</a></td>
+         
+          <td class="text-center"><a  onclick="return confirm('Do You Wantto go detail order page')" class="btn-3 text-success " href="/viewOrders?id={{_id}}">view</a></td>
+        </tr>
+       {{/each}}
+      </tbody>
+    </table>
+  </div>
+  </div>
+</section>
+
+
+
+<!-- Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <!-- Datatables -->
+    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script>
+          $(document).ready(function() {
+            $('#history').DataTable();
+          });
+        </script>
+
+
+
+<script>
+function cancelorder(proId, orderStatus) {
+  if (orderStatus === "cancelled" || orderStatus === "delivered") {
+    location.reload(); }
+    else{
+
+  $.ajax({
+    url: "/ordercancel",
+    data: { orderId:proId },
+    method: "post",
+    success: (response) => {
+    var content="cancelled"
+     // $(`#${id}value`).text("cancelled");
+     $('#status').html(content)
+      alert('cancelled')
+    },
+  });
+
+    }
+
+}
+
+</script>

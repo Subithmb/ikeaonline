@@ -1,0 +1,403 @@
+
+
+
+<style>
+
+
+.main-body {
+    padding: 15px;
+}
+.card {
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0 solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+}
+
+.card-body {
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1rem;
+}
+
+.gutters-sm {
+    margin-right: -8px;
+    margin-left: -8px;
+}
+
+.gutters-sm>.col, .gutters-sm>[class*=col-] {
+    padding-right: 8px;
+    padding-left: 8px;
+}
+.mb-3, .my-3 {
+    margin-bottom: 1rem!important;
+}
+
+.bg-gray-300 {
+    background-color: #e2e8f0;
+}
+.h-100 {
+    height: 100%!important;
+}
+.shadow-none {
+    box-shadow: none!important;
+}
+
+</style>
+   <!-- breadcrumb start-->
+    <section style="background-color:#efefef; height: 10vh;width: 100%;">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="breadcrumb_iner">
+                        <div class="breadcrumb_iner_item">
+                            {{!-- <h2 class="row justify-content-center"></h2> --}}
+                            {{!-- <p class="row justify-content-center">Home <span>-</span> Shop Category</p> --}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- breadcrumb start-->
+<section class="mt-5 pt-4">
+          <div class="row gutters-sm">
+            <div class="col-md-4 mb-3">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex flex-column align-items-center text-center">
+                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
+                    <div class="mt-3">
+                      <h4>{{userpro.name}}</h4>
+                      <p class="text-secondary mb-1">{{userpro.email}}</p>
+                      <div class="p-3">
+                      <button  type="button" class="btn_3 md-5 mt-2" data-toggle="modal" data-target="#exampleModalCenter">coupons</button><br>
+                      <button  type="button" class="btn_3 md-5 mt-2" data-toggle="modal" data-target="#exampleModalCenter1">Wallet</button><br>
+                      <a href="/orderhistory" class="btn_3 mt-2 ">orders</a>
+
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+             
+            </div>
+            <div class="col-md-8">
+              <div class="card mb-3">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Name</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                     {{userpro.name}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Last Name</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                     {{userpro.lastname}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Email</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                     {{userpro.email}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Phone</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                     {{userpro.Mobile}}
+                    </div>
+                  </div>
+                  <hr>
+                 
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <a class="btn_3 text-white" data-toggle="modal" data-target="#popUpWindowforprofileedit">Edit</a>
+                      <a class="btn_3 text-white " data-toggle="modal" data-target="#popUpWindow">change password</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row gutters-sm">
+                
+              </div>
+
+
+
+            </div>
+          </div>
+
+        </div>
+    </div>
+    </section>
+
+
+
+
+
+{{!-- wallet --}}
+
+  <!-- Style -->
+ <link rel="stylesheet" href="/css/styleModal.css">
+    <div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenter1Title" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content rounded-0">
+          <div style="height:35vh;width: 35vw;" class="modal-body bg-4 d-flex">
+              <div style="height:35vh;width: 20vw;">
+                <img width="300vh" height="210vw" src="https://cdn3.iconfinder.com/data/icons/ecommerce-objects-1/32/35_wallet_purse_pocket_dollar_finance_money_ecommerce_finance-512.png" alt="">   
+              </div>
+             
+                 <div class="text-center">
+                  <h3>IKEA Wallet</h3>
+                  <br>
+                  <br>
+                  <p>your wallet amount</p>
+
+                  <br>
+                  <br>
+                  <h4><i class="fa fa-inr" aria-hidden="true"></i>  {{ userpro.wallet}}</h4>
+                </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    
+    <!-- Modal -->
+     <!-- Style -->
+    <link rel="stylesheet" href="/css/styleModal.css">
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content rounded-0">
+          <div class="modal-body bg-4">
+
+            
+            <div class="d-flex main-content">
+              <div class="bg-image promo-img mr-3">
+                <img style="width: 14rem;height: 20rem;" src="https://tse4.mm.bing.net/th?id=OIP.aXFA8woAhbNwMt7e4g9loAHaHa&pid=Api&P=0" alt="">
+              </div>
+              <div>
+               {{#each coupons}}
+                <div class="text-center">
+                  <h3> {{couponName}}</h3>
+                  <p>vishu sale coupon</p>
+                  <p>{{expiryDate}}</p>
+                </div>
+                <div class="coupon">{{couponCode}} </div>
+                <p>
+                  <a href="#" class="btn py-3 btn-primary btn-block">Use a coupon</a>
+                </p>
+                <p class="text-center">
+                <a href="#" class="cancel" data-dismiss="modal">Sorry, I don't want this.</a>
+                </p>
+              {{/each}}
+              </div>
+            </div> 
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  
+
+    
+
+    {{!-- <h3>Log In Demo</h3>
+
+    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#popUpWindow"> Open Log In Window</button> --}}
+<div class="container">
+    <div class="modal fade " id="popUpWindow">
+      <div class="modal-dialog">
+        <div class="modal-content  bg-dark">
+
+          <!-- Header -->
+         
+
+          <!-- Body -->
+          <div style="background-color: #eff3f4;" class="modal-body">
+            <form id="myForm" onsubmit="changepassword()" method="post"   role="form">
+              <h5 class="text-center ">password change</h5>
+              <div class="form-group">
+                <input type="password" class="form-control text-success" id="current" name="current" placeholder="current password" />
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control text-warning" id="newpass" name="newpasss" placeholder="new Password" />
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control text-warning" id="confirmpass" name="confirmpass" placeholder="confirm Password" />
+              </div>
+             
+              <div class="form-group text-center align-items-center">
+                 <button class=" btn btn-success" type="submit">Submit</button>
+              </div>
+              <p class="text-danger">{{message}}</p>
+            </form>
+          
+
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+
+{{!-- <<<<<<<<<<<<<<<< profile edit  >>>>>>>>>>>>>>>>>>>>>>>> --}}
+
+
+    {{!-- <button type="button" class="btn btn-success" data-toggle="modal" data-target="#popUpWindowforprofileedit"> Open Log In Window</button> --}}
+<div class="container">
+    <div class="modal fade " id="popUpWindowforprofileedit">
+      <div class="modal-dialog">
+        <div class="modal-content  bg-dark">
+
+          <!-- Header -->
+         
+
+          <!-- Body -->
+          <div style="background-color: #eff3f4;" class="modal-body">
+            <form action="/profileDataChange" method="post"   role="form">
+              <p class="text-danger text-center">you can't change your email</p>
+                <input type="hidden" name="_id" value="{{userpro._id}}" />
+              <div class="form-group">
+                <input type="text" class="form-control text-success" id="name" name="name" value="{{userpro.name}}" />
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control text-success" id="lastname" name="lastname" value="{{userpro.lastname}}"/>
+              </div>
+              <div class="form-group">
+                <input type="number" class="form-control text-success" id="Mobile" name="Mobile" value="{{userpro.Mobile}}" />
+              </div>
+             
+              <div class="form-group text-center align-items-center">
+                 <button class=" btn btn-success " type="submit">Submit</button>
+              </div>
+              <p class="text-danger">{{message}}</p>
+            </form>
+          
+
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+
+
+
+
+
+   
+
+ {{!-- <script>
+
+
+
+
+       function changepassword() {
+         console.log('vxzvzxvzvzxzxccccccccccccc')
+          current=document.getElementById('current').value
+          newpass=document.getElementById('newpasss').value
+          confirmpass=document.getElementById('confirmpass').value
+ console.log(current)
+ console.log(newpass)
+ console.log(confirmpass)
+        event.preventDefault()
+        $.ajax({
+     url: '/passwordchange',
+     
+     method: 'post',
+     data:{
+       current:current,
+        newpass:newpass,
+        confirmpass:confirmpass
+
+     }
+     success: (response) => {
+     console.log(response)
+
+        swal("response.message");
+                },
+     error: (error) => {
+    alert(error)
+    } 
+    },)
+}
+
+
+
+
+</script> --}}
+
+<script>
+
+
+$("#myForm").submit((e)=>{
+
+  e.preventDefault() 
+
+  $.ajax({
+    url:'/passwordchange',
+    method:"post",
+    data:$("#myForm").serialize(),
+    success:(res)=>{
+  if(res.message =='password changed'){
+
+      swal(res.message,res.message, "success"); 
+  }else{
+      swal(res.message,res.message, "error"); 
+
+  }
+  
+    }
+  });
+});
+</script>
+
+
+
+
+   <!--================End Category Product Area =================-->
+{{!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
+   
