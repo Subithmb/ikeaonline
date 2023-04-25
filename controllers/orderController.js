@@ -143,7 +143,7 @@ const viewOrders=async(req,res)=>{
 
 
 
-// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<user orderlist access of admin  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<user orderlist access by admin  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 
 const useroderview=async(req,res)=>{
@@ -153,21 +153,21 @@ const useroderview=async(req,res)=>{
        
         const confirmData=await order.find().populate("products.productId").populate('address').sort({ updatedAt:-1})
 
-        const orderData =await confirmData.map((i) => {
-            return i.products.map(({productId,Tprice,quantity}) => ({
+        // const orderData =await confirmData.map((i) => {
+        //     return i.products.map(({productId,Tprice,quantity}) => ({
              
             
-              Tprice,
-              quantity,
-            }));
-          }).flat();
+        //       Tprice,
+        //       quantity,
+        //     }));
+        //   }).flat();
         
         const addressorder= await confirmData.map((i)=>{
             return i.address
 
         })
            
-        res.render('ordermanager',{admin1:true,admin:true,addressorder,orderData,confirmData})
+        res.render('ordermanager',{admin1:true,admin:true,addressorder,confirmData})
     } catch (error) {
         console.log(error.message); 
     }
