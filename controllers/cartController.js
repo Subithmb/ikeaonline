@@ -173,11 +173,11 @@ const cartItemInc  = async (req, res, next) => {
     const increment=async(req,res)=>{
       try {
         const productId = req.body.id
-        const quantity= req.body.check;
+        const quantity= parseInt(req.body.check);
        
         const userid= req.session.user_id;
         const s = await productModel.findOne({ _id: productId}).lean();
-        const stock = s.quantity
+        const stock =parseInt(s.quantity)
 
         if(quantity < stock){
           await cartmodel.updateOne({userId: userid,'products.productId':productId}, { $inc: { 'products.$.quantity': 1 } }).then(async(value)=>{
@@ -191,7 +191,7 @@ const cartItemInc  = async (req, res, next) => {
            const price1 = s.price
            const price2 = value1.quantity
            const price =price1* price2
-           await cartmodel.updateOne({userId:userid,'products.productId':productId},{$set:{"products.$.Tprice":price}}).then(async(value)=>{
+           await cartmodel.updateOne({userId:userid,'products.productId':productId},{$inc:{"products.$.Tprice":s.price}}).then(async(value)=>{
             const cartList =await Promise.all(que.products.map(({
               productId,quantity,Tprice}) => ({   
                 productName:productId.productName,
@@ -211,10 +211,23 @@ const cartItemInc  = async (req, res, next) => {
            })
           })
 
-        }else{
+        }
+        else if(quantity >= stock){
          
+          const price =stock*s.price
+          await cartmodel.updateOne({userId: userid,'products.productId':productId}, { $set: { 'products.$.quantity': stock,"products.$.Tprice":price } })
           const qu=   await cartmodel.findOne({userId:userid})
-      
+         
+        const value1 = qu.products.find((values)=>{
+          return values.productId==productId
+         })
+         return res.json({value1,success:false})
+        }
+        else{
+         
+          
+          const qu=   await cartmodel.findOne({userId:userid})
+         
         const value1 = qu.products.find((values)=>{
           return values.productId==productId
          })
@@ -232,7 +245,7 @@ const cartItemInc  = async (req, res, next) => {
       try {
      
           const productId = req.body.id
-          const quantity= req.body.quantity;
+          const quantity= parseInt(req.body.quantity);
           console.log('-------');
          
           const userid= req.session.user_id;
@@ -245,14 +258,15 @@ const cartItemInc  = async (req, res, next) => {
             return value.productId==productId
           })
         
-         if(qfind.quantity== 1) {
+         if(qfind.quantity== 1 || qfind.quantity<=1) {
           console.log('---data--');
           const value1 = qu.products.find((value)=>{
             return value.productId==productId
           })
          
-          const price2 = value1.quantity
-          const price =price1* price2
+          const price2 = 1
+          const price =price1
+          await cartmodel.updateOne({userId: userid,'products.productId':productId}, { $set: { 'products.$.quantity': 1,"products.$.Tprice":price1 } })
           return res.json({value1,message:' Item removed ',totalAmount,price})
         
          }else{
@@ -262,7 +276,7 @@ const cartItemInc  = async (req, res, next) => {
                   })
                   const price2 = value1.quantity
                   const price =price1* price2
-       await cartmodel.updateOne({userId:userid,'products.productId':productId},{$set:{"products.$.Tprice":price}}).then(async(value)=>{
+       await cartmodel.updateOne({userId:userid,'products.productId':productId},{$inc:{"products.$.Tprice":-price1}}).then(async(value)=>{
         const cartList =await Promise.all(que.products.map(({
           productId,quantity,Tprice}) => ({   
             productName:productId.productName,
