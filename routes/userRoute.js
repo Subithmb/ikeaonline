@@ -45,7 +45,7 @@ user_route.get("/varify",auth.isLogout,userController.VarifyMail);
 
 // <<<<<<<<<<<<<<<<<<<<<<user home >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-user_route.get("/",userController.loadHome);
+user_route.get("/",userController.loadHomeGuest);
 
 // <<<<<<<<<<<<<<<<<<<<<user login page getting>>>>>>>>>>>>>>>>>>>>>>>>>
 
