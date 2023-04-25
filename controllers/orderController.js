@@ -166,8 +166,8 @@ const useroderview=async(req,res)=>{
             return i.address
 
         })
-           
-        res.render('ordermanager',{admin1:true,admin:true,addressorder,confirmData})
+           res.send('done')
+       // res.render('ordermanager',{admin1:true,admin:true,addressorder,confirmData})
     } catch (error) {
         console.log(error.message); 
     }
