@@ -266,7 +266,7 @@ const verifyLogin =async(req,res)=>{
 const userShop =async(req,res)=>{
     try {
           var search= req.query.search || ''
-        
+         username= req.session.name;
       const categoryData=await category.find({is_status:false}).lean()
      
       const limit = 9;
