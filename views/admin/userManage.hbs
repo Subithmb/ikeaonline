@@ -15,8 +15,8 @@
           <th scope="col">Email</th>
           <th scope="col">Mobile</th>
           <th scope="col">status</th>
-           <th class="text-center" scope="col">Edit</th>
-          <th class="text-center" scope="col">Remove</th>
+           {{!-- <th class="text-center" scope="col">Edit</th>
+          <th class="text-center" scope="col">Remove</th> --}}
           {{!-- <th class="text-center" scope="col">Block</th> --}}
           
         </tr>
@@ -36,8 +36,8 @@
           <td class="text-center"><a onclick="return confirm('Do You Want To Block This User ')"  class="text-danger"  href="/blockUser?id={{_id}}"><button type="button" class="btn btn-danger">Block</button></a></td>
          {{/if}}
         
-          <td class="text-center"><a href="/editUser?id={{_id}}"><i class="fa fa-light fa-user-pen"></i></a></td>
-          <td class="text-center"><a onclick="return confirm('Do You Want To Delete This User ')" class="text-danger " href="/deleteuser?id={{_id}}"><i class="fa fa-light fa-trash"></i></a></td>
+          {{!-- <td class="text-center"><a href="/editUser?id={{_id}}"><i class="fa fa-light fa-user-pen"></i></a></td>
+          <td class="text-center"><a onclick="return confirm('Do You Want To Delete This User ')" class="text-danger " href="/deleteuser?id={{_id}}"><i class="fa fa-light fa-trash"></i></a></td> --}}
         </tr>
        {{/each}}
       </tbody>
