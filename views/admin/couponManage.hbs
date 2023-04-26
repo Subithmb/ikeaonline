@@ -1,43 +1,40 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+
 <section>
     <div class="container">
     <div class="row">
-      
          </div>
   <div class="container-fluid">
-    <table id="usermanager" class="table table-striped mt-5">
+    <table id="sam" class="table table-striped mt-5">
       <thead>
         <tr>
-          
-          <th scope="col">FirstName</th>
-          <th scope="col">LastName</th>
-          <th scope="col">Email</th>
-          <th scope="col">Mobile</th>
-          <th scope="col">status</th>
-           {{!-- <th class="text-center" scope="col">Edit</th>
-          <th class="text-center" scope="col">Remove</th> --}}
-          {{!-- <th class="text-center" scope="col">Block</th> --}}
-          
+          {{!-- <th scope="col">image</th> --}}
+          <th scope="col">Coupon Name</th>
+          <th scope="col">couponCode</th> 
+          <th scope="col">expiryDate</th>
+          <th class="text-center" scope="col">minAmount</th> 
+          <th class="text-center" scope="col">Coupon Limit</th> 
+          <th class="text-center" scope="col">discount Amount</th> 
+           {{!-- <th class="text-center" scope="col">Edit</th> --}}
+          <th class="text-center" scope="col">Remove</th> 
         </tr>
       </thead>
       <tbody>
-        {{#each userData}}
+        {{#each allcoupons}}
         <tr>
-          
-          <td>{{name}}</td>
-          <td>{{lastname}}</td>
-          <td>{{email}}</td>
-          <td>{{Mobile}}</td>
-          
-         {{#if status}} 
-          <td class="text-center"><a onclick="return confirm('Do You Want To UnBlock This User ')" class="text-success"  href="/unblockUser?id={{_id}}"><button type="button" class="btn btn-success">un-Block</button></a></td>
-        {{else}} 
-          <td class="text-center"><a onclick="return confirm('Do You Want To Block This User ')"  class="text-danger"  href="/blockUser?id={{_id}}"><button type="button" class="btn btn-danger">Block</button></a></td>
-         {{/if}}
-        
-          {{!-- <td class="text-center"><a href="/editUser?id={{_id}}"><i class="fa fa-light fa-user-pen"></i></a></td>
-          <td class="text-center"><a onclick="return confirm('Do You Want To Delete This User ')" class="text-danger " href="/deleteuser?id={{_id}}"><i class="fa fa-light fa-trash"></i></a></td> --}}
+        {{!-- <td><img style="width: 90px; height: 90px;" src="/productImages/{{image.[0]}}" alt=""></td> --}}
+          <td>{{couponName}}</td>
+          <td>{{couponCode}}</td>
+          <td>{{expiryDate}}</td>
+          <td>{{minAmount}}</td>
+          <td>{{couponLimit}}</td>
+          <td>{{discountAmount}}</td>
+          {{!-- {{#if status}}
+          <td class="text-center"><a onclick="return confirm('Do You Want To Delete This Product ')" class="text-danger" href="/unlistProduct?id={{_id}}"><button type="button" class="btn btn-danger">list</button></a></td>
+          {{else}}
+          <td class="text-center"><a onclick="return confirm('Do You Want To Delete This Product ')" class="text-success" href="/listProduct?id={{_id}}"><button type="button" class="btn btn-success">un list</button></a></td>
+          {{/if}} --}}
+          {{!-- <td class="text-center"><a href="/editcoupon?id={{_id}}"><i class="fa fa-light fa-user-pen"></i></a></td> --}}
+          <td class="text-center"><a onclick="return confirm('Do You Want To Delete This Coupon ')" class="text-danger " href="/deleteCoupon?id={{_id}}"><i class="fa fa-light fa-trash"></i></a></td>
         </tr>
        {{/each}}
       </tbody>
@@ -45,6 +42,7 @@
   </div>
   </div>
 </section>
+
 
 
 <!-- Jquery -->
@@ -55,12 +53,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script>
           $(document).ready(function() {
-            $('#usermanager').DataTable();
+            $('#sam').DataTable();
           });
         </script>
-
-
-
 
 
 
