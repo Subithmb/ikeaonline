@@ -1,47 +1,43 @@
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
-		integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
-		crossorigin="anonymous" referrerpolicy="no-referrer" />
-	<link rel="stylesheet" href="https://cdn.datatables.net/1.13.3/css/dataTables.bootstrap5.min.css">
-	<script src="https://cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js"></script>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
 <section>
     <div class="container">
     <div class="row">
-     
+      
          </div>
   <div class="container-fluid">
-    <table id="Categorytable" class="table table-striped mt-5">
+    <table id="usermanager" class="table table-striped mt-5">
       <thead>
         <tr>
           
-          <th scope="col">CategoryName</th>
+          <th scope="col">FirstName</th>
+          <th scope="col">LastName</th>
+          <th scope="col">Email</th>
+          <th scope="col">Mobile</th>
           <th scope="col">status</th>
-          <th scope="col">status</th>
-         
-           <th class="text-center" scope="col">Edit</th>
-          <th class="text-center" scope="col">Remove</th>
-        
+           {{!-- <th class="text-center" scope="col">Edit</th>
+          <th class="text-center" scope="col">Remove</th> --}}
+          {{!-- <th class="text-center" scope="col">Block</th> --}}
+          
         </tr>
       </thead>
       <tbody>
-        {{#each categoryData}}
+        {{#each userData}}
         <tr>
-         
-          <td>{{categoryName}}</td>
-         
-          <td>{{is_status}}</td>
-            {{#if is_status}}
-          <td class="text-center"><a onclick="return confirm('Do You Want To Delete This Product ')" class="text-danger" href="/unlistCategory?id={{_id}}"><button type="button" class="btn btn-danger">list</button></a></td>
-          {{else}}
-          <td class="text-center"><a onclick="return confirm('Do You Want To Delete This Product ')" class="text-success" href="/listCategory?id={{_id}}"><button type="button" class="btn btn-success">un list</button></a></td>
-          {{/if}}
-          <td class="text-center"><a href="/editcategory?id={{_id}}"><i class="fa fa-light fa-user-pen"></i></a></td>
-          <td class="text-center"><a onclick="return confirm('Do You Want To Delete This Category ')" class="text-danger " href="/deleteCategory?id={{_id}}"><i class="fa fa-light fa-trash"></i></a></td>
+          
+          <td>{{name}}</td>
+          <td>{{lastname}}</td>
+          <td>{{email}}</td>
+          <td>{{Mobile}}</td>
+          
+         {{#if status}} 
+          <td class="text-center"><a onclick="return confirm('Do You Want To UnBlock This User ')" class="text-success"  href="/unblockUser?id={{_id}}"><button type="button" class="btn btn-success">un-Block</button></a></td>
+        {{else}} 
+          <td class="text-center"><a onclick="return confirm('Do You Want To Block This User ')"  class="text-danger"  href="/blockUser?id={{_id}}"><button type="button" class="btn btn-danger">Block</button></a></td>
+         {{/if}}
         
-        
+          {{!-- <td class="text-center"><a href="/editUser?id={{_id}}"><i class="fa fa-light fa-user-pen"></i></a></td>
+          <td class="text-center"><a onclick="return confirm('Do You Want To Delete This User ')" class="text-danger " href="/deleteuser?id={{_id}}"><i class="fa fa-light fa-trash"></i></a></td> --}}
         </tr>
        {{/each}}
       </tbody>
@@ -50,32 +46,18 @@
   </div>
 </section>
 
-<script>
-$(document).ready(function () {
-    $('#Categorytable').DataTable();
-});
-</script>
 
- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script>    <a href=""  onclick="Deletedata('{{this._id}}');"> add to cart</a>
-     
-    function Deletedata(proId) {
-     
-      event.preventDefault()
-      $.ajax({
-          url: '/deleteCategory',
-          data: {
-         product: proId,},
-         method: 'post',
-        success: (response) => {   
-       if (response) {
-       swal("Product added to Cart !", "Product added to Cart !", "success");}
- },
- error: (error) => {
- alert(error)
-          } },)
- }
-</script>
+<!-- Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <!-- Datatables -->
+    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script>
+          $(document).ready(function() {
+            $('#usermanager').DataTable();
+          });
+        </script>
 
 
 
