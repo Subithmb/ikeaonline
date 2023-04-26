@@ -14,7 +14,7 @@
           <th scope="col">Qty</th>
           <th class="text-center" scope="col">status</th> 
            <th class="text-center" scope="col">Edit</th>
-          <th class="text-center" scope="col">Remove</th> 
+          {{!-- <th class="text-center" scope="col">Remove</th>  --}}
         </tr>
       </thead>
       <tbody>
@@ -31,7 +31,7 @@
           <td class="text-center"><a onclick="return confirm('Do You Want To Delete This Product ')" class="text-success" href="/listProduct?id={{_id}}"><button type="button" class="btn btn-success">un list</button></a></td>
           {{/if}}
           <td class="text-center"><a href="/editproduct?id={{_id}}"><i class="fa fa-light fa-user-pen"></i></a></td>
-          <td class="text-center"><a onclick="return confirm('Do You Want To Delete This Product ')" class="text-danger " href="/deleteProduct?id={{_id}}"><i class="fa fa-light fa-trash"></i></a></td>
+          {{!-- <td class="text-center"><a onclick="return confirm('Do You Want To Delete This Product ')" class="text-danger " href="/deleteProduct?id={{_id}}"><i class="fa fa-light fa-trash"></i></a></td> --}}
         </tr>
        {{/each}}
       </tbody>
