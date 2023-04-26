@@ -1,43 +1,50 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
-<section>
+
+<section style="margin-top: 10vh">
     <div class="container">
     <div class="row">
-      
          </div>
   <div class="container-fluid">
-    <table id="usermanager" class="table table-striped mt-5">
+    <table id="orderhistory" class="table table-striped mt-5">
       <thead>
         <tr>
-          
-          <th scope="col">FirstName</th>
-          <th scope="col">LastName</th>
-          <th scope="col">Email</th>
-          <th scope="col">Mobile</th>
-          <th scope="col">status</th>
-           {{!-- <th class="text-center" scope="col">Edit</th>
-          <th class="text-center" scope="col">Remove</th> --}}
-          {{!-- <th class="text-center" scope="col">Block</th> --}}
-          
+           <th scope="col">OrderNo</th>
+          {{!-- <th scope="col">productName</th> --}}
+          <th scope="col">toalprice</th> 
+          {{!-- <th scope="col">delivery address</th> --}}
+          <th scope="col"> paymentmethod </th>
+          <th class="text-center" scope="col">payment status</th> 
+          <th class="text-center" scope="col">order status</th> 
+           {{!-- <th class="text-center" scope="col">Edit</th> --}}
+          <th class="text-center" scope="col">view order</th> 
+          <th class="text-center" scope="col">cancelorder</th> 
         </tr>
       </thead>
       <tbody>
-        {{#each userData}}
+        {{#each confirmData}}
         <tr>
-          
-          <td>{{name}}</td>
-          <td>{{lastname}}</td>
-          <td>{{email}}</td>
-          <td>{{Mobile}}</td>
-          
-         {{#if status}} 
-          <td class="text-center"><a onclick="return confirm('Do You Want To UnBlock This User ')" class="text-success"  href="/unblockUser?id={{_id}}"><button type="button" class="btn btn-success">un-Block</button></a></td>
-        {{else}} 
-          <td class="text-center"><a onclick="return confirm('Do You Want To Block This User ')"  class="text-danger"  href="/blockUser?id={{_id}}"><button type="button" class="btn btn-danger">Block</button></a></td>
-         {{/if}}
-        
-          {{!-- <td class="text-center"><a href="/editUser?id={{_id}}"><i class="fa fa-light fa-user-pen"></i></a></td>
-          <td class="text-center"><a onclick="return confirm('Do You Want To Delete This User ')" class="text-danger " href="/deleteuser?id={{_id}}"><i class="fa fa-light fa-trash"></i></a></td> --}}
+        {{!-- <td><img style="width: 90px; height: 90px;" src="/productImages/{{image.[0]}}" alt=""></td> --}}
+          <td>{{_id}}</td>
+          {{!-- <td>{{productname}}</td> --}}
+          <td>{{totalAmount}}</td>
+          {{!-- <td>{{address.name}}</td> --}}
+          <td>{{ paymentmethod}}</td>
+          <td>{{paymentStatus}}</td>
+          <td>{{orderStatus}}</td>
+          <td>  <div class="nav-item dropdown ">
+                        <a  class="nav-link dropdown-toggle" data-bs-toggle="dropdown">order Manage</a>
+                        <div class="dropdown-menu bg-dark  border-0">
+                            <a onclick="delivered('{{_id}}')" class="dropdown-item text-success">delivered</a>
+                            <a onclick="dispatched('{{_id}}')" class="dropdown-item text-primary">dispatched</a>
+                            <a onclick="pending('{{_id}}')" class="dropdown-item text-warning">pending</a>
+                            <a id="status" onclick="cancelorders('{{_id}}','{{orderStatus}}')"class="dropdown-item text-danger">cancelled</a>
+                            {{!-- <a href="/addbanner" class="dropdown-item"></a> --}}
+                            <div class="btn-group">
+  
+                        </div>
+                        </div>
+                    </div></td>
+       
+          <td class="text-center"><a  onclick="return confirm('Do You Wantto go detail order page')" class="btn-3 text-success " href="/userOrders?id={{_id}}">view</a></td>
         </tr>
        {{/each}}
       </tbody>
@@ -47,20 +54,169 @@
 </section>
 
 
+
 <!-- Jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <!-- Datatables -->
     <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
     <!-- Bootstrap -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <script>
+    {{!-- <script>
           $(document).ready(function() {
-            $('#usermanager').DataTable();
+            $('#orderhistory').DataTable();
           });
-        </script>
+        </script> --}}
+
+
+<script>
+
+
+            function cancelorders(id,orderStatus) {
+               if (orderStatus === "cancelled" || orderStatus === "delivered") {
+     Swal.fire(' already cancelled or delivered !', '', 'error')
+     
+     }else{
+
+            Swal.fire({
+                title: `Are you sure want to cancel this order`,
+                showDenyButton: true,
+                confirmButtonText: 'Yes',
+                denyButtonText: `No`,
+            }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    Swal.fire('cancelled!', '', 'success')
+
+                    $.ajax({
+                       method: 'post',
+                        url: "/ordercanceling?id="+id,
+                        success: () => {
+                            location.reload()
+                        }
+                    })
+                } else if (result.isDenied) {
+
+                }
+            })
+
+            }
+        }
+
+
+
+
+
+ 
+
+      function ordered(proId) {
+        
+        event.preventDefault()
+        $.ajax({
+        url: '/ordered',
+        data: {
+        product: proId,},
+
+    method: 'post',
+    success: (response) => {
+                   
+    if (response) {
+    swal("Product added to wishlist!", "Product added to Whishlist!", "success");
+    } },
+    error: (error) => {
+    alert(error+'error')
+     } },)
+ }
+
+</script>
 
 
 
 
 
 
+
+   </script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css" rel="stylesheet">
+
+<script>
+
+
+            function delivered(id) {
+            Swal.fire({
+                title: `Are you sure want to delivery this order`,
+                showDenyButton: true,
+                confirmButtonText: 'Yes',
+                denyButtonText: `No`,
+            }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    Swal.fire('Listed!', '', 'success')
+
+                    $.ajax({
+                        url: "/delivered?id="+id,
+                      
+                        success: () => {
+                            location.reload()
+                        }
+                    })
+                } else if (result.isDenied) {
+
+                }
+            })
+        }
+
+
+            function dispatched(id) {
+            Swal.fire({
+                title: `Are you sure want to dispatched this order`,
+                showDenyButton: true,
+                confirmButtonText: 'Yes',
+                denyButtonText: `No`,
+            }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    Swal.fire('Listed!', '', 'success')
+
+                    $.ajax({
+                        url: "/dispatched?id="+id,
+                      
+                        success: () => {
+                            location.reload()
+                        }
+                    })
+                } else if (result.isDenied) {
+
+                }
+            })
+        }
+
+           
+            function pending(id) {
+            Swal.fire({
+                title: `Are you sure want to pending this order`,
+                showDenyButton: true,
+                confirmButtonText: 'Yes',
+                denyButtonText: `No`,
+            }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    Swal.fire('Listed!', '', 'success')
+
+                    $.ajax({
+                        url: "/pending?id="+id,
+                      
+                        success: () => {
+                            location.reload()
+                        }
+                    })
+                } else if (result.isDenied) {
+
+                }
+            })
+        }
+
+           
+
+
+</script>
